@@ -22,7 +22,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` })
 
 function Intro() {
-  const heading = 'Happy Birthday Jaysha'
+  const heading = 'Jaysha'
   const navigate = useNavigate()
   const navigateTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   useEffect(() => () => clearTimeout(navigateTimer.current), [])
