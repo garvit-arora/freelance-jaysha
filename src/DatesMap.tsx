@@ -1,251 +1,121 @@
-﻿import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { PageHeader } from './Calendar'
-import { Heart, Minus, Plus, RotateCcw, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import L from 'leaflet'
+import { createPortal } from 'react-dom'
+import { ArrowLeft, Search, Plus, Minus, LocateFixed, Layers, X, ExternalLink, MapPin, View } from 'lucide-react'
 import { dateMemories, memoryLocations } from './dates-memories'
-import projection from './map-projection.json'
-import './vendor/india-map-engine.js'
-import './dates-map.css'
+import { venueFor, venueCoordinates, venueAlternatives, type VenueCoordinate } from './venue-locations'
+import { listMedia } from './lib/cloud'
+import 'leaflet/dist/leaflet.css'
+import './street-map.css'
 
-type Feature = { id: string; element: SVGGElement; attributes: { state: string } }
-type Engine = {
-  load: () => Promise<unknown>; destroy: () => void; clearSelection: () => void
-  on: (name: string, handler: (event: CustomEvent<{ id: string; feature: Feature }>) => void) => () => void
-  getFeatureElement: (id: string) => SVGGElement | null
-  getFeatures: () => Feature[]; select: (id: string) => void
-}
-type View = { x: number; y: number; width: number; height: number }
-const HOME: View = { x: 0, y: 0, width: 1000, height: 1100 }
-const projectedLocations = Object.entries(memoryLocations).map(([id, location]) => ({
-  id, ...location,
-  x: projection.offsetX + (location.longitude * Math.PI / 180 - projection.minX) * projection.scale,
-  y: projection.offsetY + (-Math.log(Math.tan(Math.PI / 4 + location.latitude * Math.PI / 360)) - projection.minY) * projection.scale,
-  count: dateMemories.filter(memory => memory.location === id).length,
-})).filter(location => location.count > 0)
-
-export default function DatesMap() {
+const allBounds = L.latLngBounds(Object.values(venueCoordinates).map(place => [place.latitude, place.longitude] as L.LatLngTuple))
+const delhiBounds = L.latLngBounds([[28.33, 76.91], [28.8, 77.46]])
+export default function DatesMap({ embedded = false }: { embedded?: boolean }) {
+  const Surface = embedded ? 'section' : 'main'
   const mount = useRef<HTMLDivElement>(null)
-  const engine = useRef<Engine | null>(null)
-  const controls = useRef({ zoom: (_factor: number) => {}, reset: () => {} })
-  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
-  const [label, setLabel] = useState('India')
-  const [selected, setSelected] = useState('')
-  const [regions, setRegions] = useState<{ id: string; name: string }[]>([])
-  const [retry, setRetry] = useState(0)
-  const [activeLocations, setActiveLocations] = useState<string[]>([])
-  const [activeMemory, setActiveMemory] = useState<string | null>(null)
-  const visibleMemories = dateMemories.filter(memory => activeLocations.includes(memory.location))
-
+  const map = useRef<L.Map | null>(null)
+  const markers = useRef<L.LayerGroup | null>(null)
+  const [query, setQuery] = useState('')
+  const [streetView, setStreetView] = useState<{ place: string; latitude: number; longitude: number; source: string; precision: string; memoryIds: string[] } | null>(null)
+  const panoramaClose = useRef<HTMLButtonElement>(null)
+  const embedKey = import.meta.env.VITE_GOOGLE_MAPS_EMBED_KEY
+  const [selected, setSelected] = useState<string[]>([])
+  const [showList, setShowList] = useState(false)
+  const [glow, setGlow] = useState(true)
+  const [tileError, setTileError] = useState(false)
+  const [covers, setCovers] = useState<Record<string, string>>({})
+  const [ready, setReady] = useState(false)
+  const [coverWarning, setCoverWarning] = useState(false)
+  const matching = dateMemories.filter(memory => `${memory.place} ${memory.note} ${memory.date} ${memoryLocations[memory.location].name}`.toLowerCase().includes(query.toLowerCase()))
+  const visible = selected.length ? matching.filter(memory => selected.includes(memory.id)) : matching
+  useEffect(() => {
+    let live = true
+    listMedia().then(items => {
+      if (!live) return
+      const photos: Record<string, string> = {}
+      items.filter(item => item.kind === 'image').forEach(item => { if (!photos[item.memory_date]) photos[item.memory_date] = item.thumbnail_url || item.url })
+      setCovers(photos)
+    }).catch(() => { if (live) setCoverWarning(true) })
+    return () => { live = false }
+  }, [])
   useEffect(() => {
     if (!mount.current) return
-    const node = mount.current
-    const Constructor = (window as unknown as { IndiaMapEngine: new (options: Record<string, unknown>) => Engine }).IndiaMapEngine
-    const map = new Constructor({ mount: node, src: '/india-map-studio/india-states.svg', featureSelector: '.map-region', featureKey: 'slug' })
-    engine.current = map
-    let disposed = false
-    let svg: SVGSVGElement | null = null
-    const view = { ...HOME }
-    let selectedSlug = ''
-    let markers: { element: SVGGElement; count: SVGTextElement; title: SVGTitleElement; location: typeof projectedLocations[number] }[] = []
-    let moved = false
-    let dragDistance = 0
-    const pointers = new Map<number, { x: number; y: number }>()
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    setStatus('loading')
+    const instance = L.map(mount.current, { zoomControl: false, minZoom: 3, maxZoom: 19, attributionControl: true, scrollWheelZoom: !embedded })
+    map.current = instance
+    instance.fitBounds(delhiBounds, { padding: [35, 35] })
+    const tiles = L.tileLayer(import.meta.env.VITE_MAP_TILE_URL || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, keepBuffer: 1,
+      attribution: import.meta.env.VITE_MAP_ATTRIBUTION || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(instance)
+    tiles.on('tileerror', () => setTileError(true))
+    markers.current = L.layerGroup().addTo(instance)
+    const resize = new ResizeObserver(() => instance.invalidateSize({ pan: false }))
+    resize.observe(mount.current)
+    setReady(true)
+    return () => { resize.disconnect(); instance.remove(); map.current = null; markers.current = null }
+  }, [embedded])
+  useEffect(() => {
+    const instance = map.current, layer = markers.current
+    if (!instance || !layer || !ready) return
     const paint = () => {
-      if (!svg) return
-      svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.width} ${view.height}`)
-      const scale = Math.abs(svg.getScreenCTM()?.a || 1)
-      const remaining = markers.filter(marker => !selectedSlug || marker.location.state === selectedSlug)
-      markers.forEach(marker => { marker.element.style.display = 'none' })
-      while (remaining.length) {
-        const marker = remaining.shift()!
-        const group = [marker]
-        for (let i = remaining.length - 1; i >= 0; i--) {
-          if (Math.hypot(remaining[i].location.x - marker.location.x, remaining[i].location.y - marker.location.y) * scale < 42) group.push(...remaining.splice(i, 1))
+      layer.clearLayers()
+      const venues = new Map<string, typeof matching>()
+      for (const memory of matching) {
+        const key = `${memory.location}:${memory.place.trim().toLowerCase()}`
+        venues.set(key, [...(venues.get(key) || []), memory])
+      }
+      const entries = [...venues.entries()]
+      for (const [key, memories] of entries) {
+        const point = venueFor(memories[0])
+        if (!point) continue
+        const latitude = point.latitude, longitude = point.longitude
+        const origin = L.latLng(latitude, longitude)
+        if (glow) {
+          L.circleMarker([latitude, longitude], { radius: Math.min(72, 27 + memories.length * 2), stroke: false, fillColor: '#f3b44c', fillOpacity: .17, interactive: false }).addTo(layer)
+          L.circleMarker([latitude, longitude], { radius: Math.min(43, 16 + memories.length), stroke: false, fillColor: '#ff805e', fillOpacity: .12, interactive: false }).addTo(layer)
         }
-        const ids = group.map(item => item.location.id)
-        const count = group.reduce((total, item) => total + item.location.count, 0)
-        marker.element.style.display = ''
-        marker.element.dataset.locations = ids.join('|')
-        marker.element.setAttribute('transform', `translate(${marker.location.x} ${marker.location.y}) scale(${1 / scale})`)
-        marker.element.setAttribute('aria-label', `${group.map(item => item.location.name).join(', ')}: ${count} memories`)
-        marker.title.textContent = marker.element.getAttribute('aria-label')
-        marker.count.textContent = String(count)
-      }
-    }
-    const go = (next: View, animate = true) => {
-      gsap.killTweensOf(view)
-      if (animate && !reduced) gsap.to(view, { ...next, duration: .45, ease: 'power2.out', onUpdate: paint })
-      else { Object.assign(view, next); paint() }
-    }
-    const zoom = (factor: number, cx = view.x + view.width / 2, cy = view.y + view.height / 2) => {
-      const width = Math.max(0.6, Math.min(1400, view.width * factor))
-      const ratio = width / view.width
-      go({ x: cx - (cx - view.x) * ratio, y: cy - (cy - view.y) * ratio, width, height: width * 1.1 }, false)
-    }
-    const reset = () => { selectedSlug = ''; map.clearSelection(); setSelected(''); setLabel('India'); setActiveLocations([]); go(HOME) }
-    controls.current = { zoom, reset }
-    const subscriptions = [
-      map.on('selectionchange', event => {
-        const id = event.detail.id
-        selectedSlug = id || ''
-        setSelected(id || '')
-        setActiveLocations([])
-        if (!id) { paint(); return }
-        setLabel(event.detail.feature.attributes.state)
-        const box = map.getFeatureElement(id)?.getBBox()
-        if (!box) return
-        const width = Math.max(box.width, box.height / 1.1, 4) * 1.22
-        go({ x: box.x + box.width / 2 - width / 2, y: box.y + box.height / 2 - width * 1.1 / 2, width, height: width * 1.1 })
-      }),
-      map.on('featureenter', event => setLabel(event.detail.feature.attributes.state)),
-      map.on('featurefocus', event => setLabel(event.detail.feature.attributes.state)),
-    ]
-    const svgPoint = (x: number, y: number) => {
-      if (!svg) return null
-      const matrix = svg.getScreenCTM()
-      if (!matrix) return null
-      return new DOMPoint(x, y).matrixTransform(matrix.inverse())
-    }
-    const wheel = (event: WheelEvent) => {
-      if (!svg) return
-      event.preventDefault()
-      const point = svgPoint(event.clientX, event.clientY)
-      if (point) zoom(event.deltaY > 0 ? 1.12 : .89, point.x, point.y)
-    }
-    const down = (event: PointerEvent) => {
-      if (!svg || (event.pointerType === 'mouse' && event.button !== 0)) return
-      gsap.killTweensOf(view)
-      if (!pointers.size) { moved = false; dragDistance = 0 }
-      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
-      node.classList.add('is-panning')
-      node.setPointerCapture(event.pointerId)
-    }
-    const move = (event: PointerEvent) => {
-      const previous = pointers.get(event.pointerId)
-      if (!previous || !svg) return
-      const next = { x: event.clientX, y: event.clientY }
-      const other = Array.from(pointers.entries()).find(([id]) => id !== event.pointerId)?.[1]
-      dragDistance += Math.hypot(next.x - previous.x, next.y - previous.y)
-      if (dragDistance > 5) moved = true
-      if (other) {
-        const oldDistance = Math.hypot(previous.x - other.x, previous.y - other.y)
-        const newDistance = Math.hypot(next.x - other.x, next.y - other.y)
-        const center = svgPoint((next.x + other.x) / 2, (next.y + other.y) / 2)
-        if (oldDistance > 0 && newDistance > 0 && center) zoom(oldDistance / newDistance, center.x, center.y)
-        moved = true
-      } else {
-        const before = svgPoint(previous.x, previous.y)
-        const after = svgPoint(next.x, next.y)
-        if (before && after) go({ ...view, x: view.x + before.x - after.x, y: view.y + before.y - after.y }, false)
-      }
-      pointers.set(event.pointerId, next)
-    }
-    const up = (event: PointerEvent) => {
-      pointers.delete(event.pointerId)
-      if (node.hasPointerCapture(event.pointerId)) node.releasePointerCapture(event.pointerId)
-      if (!pointers.size) node.classList.remove('is-panning')
-    }
-    const click = (event: MouseEvent) => {
-      if (moved && event.detail !== 0) { event.preventDefault(); event.stopImmediatePropagation(); moved = false }
-    }
-    // Capture on the original SVG target so a simple tap still reaches the engine's state click handler.
-    const downWithCapture = (event: PointerEvent) => {
-      down(event)
-      if (svg && event.target instanceof Element && 'setPointerCapture' in event.target) {
-        node.releasePointerCapture(event.pointerId)
-        ;(event.target as Element).setPointerCapture(event.pointerId)
-      }
-    }
-    node.addEventListener('wheel', wheel, { passive: false })
-    node.addEventListener('pointerdown', downWithCapture)
-    node.addEventListener('pointermove', move)
-    node.addEventListener('pointerup', up)
-    node.addEventListener('pointercancel', up)
-    node.addEventListener('click', click, true)
-    map.load().then(() => {
-      if (disposed) return
-      svg = node.querySelector('svg')
-      if (svg) {
-        const namespace = 'http://www.w3.org/2000/svg'
-        const layer = document.createElementNS(namespace, 'g')
-        layer.setAttribute('class', 'memory-pin-layer')
-        svg.append(layer)
-        markers = projectedLocations.map(location => {
-          const element = document.createElementNS(namespace, 'g')
-          element.setAttribute('class', 'memory-map-pin')
-          element.setAttribute('role', 'button')
-          element.setAttribute('tabindex', '0')
-          const title = document.createElementNS(namespace, 'title')
-          const pin = document.createElementNS(namespace, 'image')
-          pin.setAttribute('href', '/pin.png')
-          pin.setAttribute('x', '-29')
-          pin.setAttribute('y', '-43')
-          pin.setAttribute('width', '56')
-          pin.setAttribute('height', '56')
-          const count = document.createElementNS(namespace, 'text')
-          count.setAttribute('text-anchor', 'middle')
-          count.setAttribute('dominant-baseline', 'central')
-          count.setAttribute('y', '-22')
-          element.append(title, pin, count)
-          layer.append(element)
-          const open = () => {
-            const ids = (element.dataset.locations || location.id).split('|')
-            setActiveLocations(ids)
-            setActiveMemory(null)
-            setLabel(ids.map(id => memoryLocations[id].name).join(' · '))
-            const points = projectedLocations.filter(point => ids.includes(point.id))
-            const minX = Math.min(...points.map(point => point.x)), maxX = Math.max(...points.map(point => point.x))
-            const minY = Math.min(...points.map(point => point.y)), maxY = Math.max(...points.map(point => point.y))
-            const width = Math.max(maxX - minX, (maxY - minY) / 1.1, 6) * 1.8
-            go({ x: (minX + maxX) / 2 - width / 2, y: (minY + maxY) / 2 - width * 1.1 / 2, width, height: width * 1.1 })
-          }
-          element.addEventListener('click', event => { event.stopPropagation(); open() })
-          element.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); open() } })
-          return { element, count, title, location }
+        const content = document.createElement('div'); content.className = 'street-photo-marker'
+        const bubble = document.createElement('span'); bubble.className = 'street-original-pin'
+        const image = document.createElement('img'); image.src = '/pin.png'; image.alt = ''; bubble.append(image)
+        const count = document.createElement('small'); count.textContent = String(memories.length); bubble.append(count)
+        const label = document.createElement('span'); label.className = 'street-pin-label'; label.textContent = memories[0].place
+        content.append(bubble, label)
+        const marker = L.marker([latitude, longitude], { icon: L.divIcon({ html: content, className: 'street-marker-wrapper', iconSize: [62, 76], iconAnchor: [31, 70] }), title: `${label.textContent}: ${memories.length} memories`, keyboard: true }).addTo(layer)
+        marker.on('click', () => {
+          setSelected(memories.map(memory => memory.id)); setShowList(true)
+          setStreetView({ place: memories[0].place, latitude, longitude, source: point.source, precision: point.precision, memoryIds: memories.map(memory => memory.id) })
+          instance.setView(origin, Math.max(instance.getZoom(), 13), { animate: !window.matchMedia('(prefers-reduced-motion: reduce)').matches })
         })
       }
-      paint()
-      const features = map.getFeatures()
-      features.forEach(feature => { feature.element.setAttribute('role', 'button'); feature.element.setAttribute('aria-label', `Select ${feature.attributes.state}`) })
-      setRegions(features.map(feature => ({ id: feature.id, name: feature.attributes.state })).sort((a, b) => a.name.localeCompare(b.name)))
-      setStatus('ready')
-      const minX = Math.min(...projectedLocations.map(point => point.x)), maxX = Math.max(...projectedLocations.map(point => point.x))
-      const minY = Math.min(...projectedLocations.map(point => point.y)), maxY = Math.max(...projectedLocations.map(point => point.y))
-      const width = Math.max(maxX - minX, (maxY - minY) / 1.1, 180) * 1.55
-      go({ x: (minX + maxX) / 2 - width / 2, y: (minY + maxY) / 2 - width * 1.1 / 2, width, height: width * 1.1 }, false)
-      ScrollTrigger.refresh()
-    }).catch(() => { if (!disposed) setStatus('error') })
-    return () => {
-      disposed = true
-      gsap.killTweensOf(view)
-      subscriptions.forEach(remove => remove())
-      node.removeEventListener('wheel', wheel)
-      node.removeEventListener('pointerdown', downWithCapture)
-      node.removeEventListener('pointermove', move)
-      node.removeEventListener('pointerup', up)
-      node.removeEventListener('pointercancel', up)
-      node.removeEventListener('click', click, true)
-      map.destroy()
-      engine.current = null
     }
-  }, [retry])
+    paint(); instance.on('zoomend moveend', paint)
+    return () => { instance.off('zoomend moveend', paint); layer.clearLayers() }
+  }, [ready, query, glow, covers])
+  useEffect(() => {
+    if (!streetView) return
+    const previous = document.activeElement as HTMLElement | null
+    panoramaClose.current?.focus()
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setStreetView(null) }
+    document.addEventListener('keydown', onKey)
+    return () => { document.removeEventListener('keydown', onKey); previous?.focus() }
+  }, [streetView])
+  function fitAll() { setSelected([]); map.current?.fitBounds(allBounds, { padding: [65, 65], maxZoom: 12 }) }
+  function focusPlace(memoryId: string, candidate?: VenueCoordinate) {
+    const memory = dateMemories.find(item => item.id === memoryId)
+    if (!memory) return
+    const point = candidate || venueFor(memory)
+    setSelected([memoryId]); setShowList(true)
+    if (!point) return
+    setStreetView({ place: memory.place, latitude: point.latitude, longitude: point.longitude, source: point.source, precision: point.precision, memoryIds: [memoryId] })
+    map.current?.setView([point.latitude, point.longitude], 16)
+  }
+  return <Surface className={`street-map-page ${embedded ? 'street-map-embedded' : ''}`} aria-label="Our dates street map"><div ref={mount} className="street-map-canvas" aria-label="Interactive street map. Use arrow keys to pan and plus or minus to zoom." />
+    <div className="street-map-left"><div className="street-search-bar"><Link to="/explore" aria-label="Back to our world"><ArrowLeft size={20} /></Link><label><span className="sr-only">Search our places, dates and memories</span><input value={query} onChange={event => { setQuery(event.target.value); setSelected([]); setShowList(true) }} placeholder="Search our memories" /></label>{query ? <button aria-label="Clear search" onClick={() => { setQuery(''); setSelected([]) }}><X size={18} /></button> : <Search size={19} />}</div><div className="street-map-chips"><button onClick={() => { setSelected([]); setShowList(value => !value) }} aria-expanded={showList}><MapPin size={14} /> {dateMemories.length} memories</button><button onClick={fitAll}><LocateFixed size={14} /> All places</button></div>
+    {showList && <section className="street-memory-panel" aria-label="Place memories"><header><div><span>OUR LITTLE WORLD</span><h1>{selected.length === 1 ? dateMemories.find(memory => memory.id === selected[0])?.place : query ? 'Search results' : 'Our dates'}</h1><small>{visible.length} memories</small></div><button aria-label="Close memories" onClick={() => { setShowList(false); setSelected([]) }}><X size={19} /></button></header><p className="street-location-note">Pins use published or supplied coordinates. Precision notes identify area anchors; unresolved branches require a choice.</p><ul>{visible.map(memory => <li key={memory.id}><button className="street-memory-focus" onClick={() => focusPlace(memory.id)}>{covers[memory.date] && <img src={covers[memory.date]} alt="" loading="lazy" />}<div><time>{memory.date}</time><h2>{memory.place}</h2><p>{memory.note}</p><small className="street-coordinate-status">{venueFor(memory) ? `${venueFor(memory)!.latitude.toFixed(6)}, ${venueFor(memory)!.longitude.toFixed(6)} / ${venueFor(memory)!.precision}` : 'Location unresolved - not pinned'}</small></div></button>{venueFor(memory) && <a href={venueFor(memory)!.source} target="_blank" rel="noopener noreferrer">{venueFor(memory)!.provenance === 'user-provided' ? 'Supplied coordinate: map reference' : 'Coordinate source'} <ExternalLink size={12} /></a>}{venueAlternatives[memory.place.toLowerCase()]?.map(option => <button key={option.name} className="street-branch-choice" onClick={() => focusPlace(memory.id, option)}>{option.name} / {option.precision}</button>)}<a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueFor(memory) ? `${venueFor(memory)!.latitude},${venueFor(memory)!.longitude}` : `${memory.place}, ${memoryLocations[memory.location].name}, India`)}`} target="_blank" rel="noopener noreferrer">Open in Google Maps <ExternalLink size={12} /></a></li>)}</ul>{!visible.length && <p className="street-no-results">No matching memories. Try a place name or date.</p>}</section>}
+    </div><div className="street-map-controls"><button aria-label="Zoom in" onClick={() => map.current?.zoomIn()}><Plus size={21} /></button><button aria-label="Zoom out" onClick={() => map.current?.zoomOut()}><Minus size={21} /></button><button aria-label="Return to Delhi NCR" onClick={() => map.current?.fitBounds(delhiBounds, { padding: [35, 35] })}><LocateFixed size={20} /></button><button aria-label="Toggle memory glow" aria-pressed={glow} onClick={() => setGlow(value => !value)}><Layers size={20} /></button></div>
+    <div className="street-map-caption">Our dates · Real streets, favorite memories</div>{tileError && <div className="street-map-error" role="alert">Some map tiles couldn’t load. Check your connection. <button onClick={() => window.location.reload()}>Retry</button></div>}{coverWarning && <div className="street-photo-warning">Photo previews are unavailable. Your written memories are still here.</div>}
+    {streetView && createPortal(<div className="street-panorama-backdrop" onClick={event => { if (event.target === event.currentTarget) setStreetView(null) }}><section className="street-panorama-dialog" role="dialog" aria-modal="true" aria-labelledby="panorama-title"><header><div><span>STREET VIEW</span><h2 id="panorama-title">{streetView.place}</h2><p>{streetView.precision}. Street View shows the nearest available outdoor panorama.</p></div><button ref={panoramaClose} onClick={() => setStreetView(null)} aria-label="Close Street View"><X size={23} /></button></header><div className="street-panorama-content"><div className="street-panorama-view">{embedKey ? <iframe title={`Street View near ${streetView.place}`} src={`https://www.google.com/maps/embed/v1/streetview?key=${encodeURIComponent(embedKey)}&location=${encodeURIComponent(`${streetView.latitude},${streetView.longitude}`)}&radius=50&source=outdoor&fov=90`} allowFullScreen referrerPolicy="strict-origin-when-cross-origin" /> : <div className="street-panorama-setup"><View size={38} /><h3>Street View is ready to connect</h3><p>Add a Google Maps Embed API key to <code>VITE_GOOGLE_MAPS_EMBED_KEY</code> in your environment, then restart the app.</p><p>Enable Maps Embed API in Google Cloud and restrict this browser key to your website domains.</p></div>}</div><aside className="street-panorama-memories" aria-label="Memories at this pin"><span>THE DAYS WE KEPT</span>{dateMemories.filter(memory => streetView.memoryIds.includes(memory.id)).map(memory => <article key={memory.id} className="active"><button onClick={() => setStreetView(previous => previous ? { ...previous, place: memory.place } : null)}><time>{memory.date}</time><h3>{memory.place}</h3><p>{memory.note}</p></button></article>)}</aside></div></section></div>, document.body)}
 
-  return <main className="world-page dates-page site-texture">
-    <PageHeader title="Dates" />
-    <section className="studio-map" aria-label="Interactive India map">
-      <div className="studio-map-toolbar"><label className="sr-only" htmlFor="studio-state">Select a state</label><select id="studio-state" value={selected} disabled={status !== 'ready'} onChange={event => event.target.value ? engine.current?.select(event.target.value) : controls.current.reset()}><option value="">All of India</option>{regions.map(region => <option key={region.id} value={region.id}>{region.name}</option>)}</select><div className="studio-map-zoom"><button aria-label="Zoom in" disabled={status !== 'ready'} onClick={() => controls.current.zoom(.65)}><Plus size={20} /></button><button aria-label="Zoom out" disabled={status !== 'ready'} onClick={() => controls.current.zoom(1.5)}><Minus size={20} /></button><button aria-label="Reset view" disabled={status !== 'ready'} onClick={() => controls.current.reset()}><RotateCcw size={18} /></button></div></div>
-      <div ref={mount} className="studio-map-mount" />
-      {status === 'loading' && <p className="studio-map-status" role="status">Loading map…</p>}
-      {status === 'error' && <p className="studio-map-status" role="alert">Couldn’t load the map. <button onClick={() => setRetry(value => value + 1)}>Try again</button></p>}
-      <button className="all-memories-button" onClick={() => { setActiveLocations(Object.keys(memoryLocations)); setActiveMemory(null) }}><Heart size={15} /> All {dateMemories.length} memories</button>
-      {!!activeLocations.length && <section className="map-memories-panel" aria-label="Place memories">
-        <header><div><span>Our dates</span><h2>{activeLocations.length === 1 ? memoryLocations[activeLocations[0]].name : `${visibleMemories.length} memories`}</h2></div><button aria-label="Close memories" onClick={() => setActiveLocations([])}><X size={20} /></button></header>
-        <ul>{visibleMemories.map(memory => <li key={memory.id}><button className={activeMemory === memory.id ? 'is-active' : ''} onClick={() => setActiveMemory(memory.id)} aria-pressed={activeMemory === memory.id}><time>{memory.date}</time><strong>{memory.place}</strong>{memory.note && <span>{memory.note}</span>}</button></li>)}</ul>
-      </section>}
-      <div className="studio-map-caption"><span aria-live="polite">{label}</span><span>Tap a pin for memories · Drag to pan · Pinch to zoom</span></div>
-    </section>
-  </main>
+  </Surface>
 }

@@ -22,3 +22,12 @@ html body .site-menu-panel{
 }
 html body .romantic-login-background{background-image:var(--page-texture);background-size:var(--page-texture-size);background-repeat:repeat;filter:none;transform:none;inset:0}
 html body .romantic-login:after{background:transparent}
+/* Keep the hero photograph behind the complete scrolling Explore page. */
+html body .explore-page{position:relative;isolation:isolate;background-image:none;background-color:transparent}
+ .explore-fixed-background{position:fixed;inset:0;z-index:0;pointer-events:none;background:#080808;overflow:hidden}
+.explore-fixed-background:before{content:'';position:absolute;inset:-18px;background:url('/bg-post-timeline.jpeg') center 40%/cover no-repeat;filter:blur(8px)}
+.explore-fixed-background:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.38),rgba(0,0,0,.56))}
+#smooth-wrapper{z-index:1}
+html body main.explore-page[aria-label="Explore"]>section{background:transparent}
+.explore-page .explore-photo-image{display:block;opacity:0}
+.explore-page .explore-photo-shade{display:none}

@@ -1,0 +1,338 @@
+{
+  "sector 4 vaishali lenskart.com": {
+    "name": "Lenskart Sector 4, Vaishali",
+    "latitude": 28.6447199,
+    "longitude": 77.3384855,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Shop No 3, Ground Floor, Nipun Plaza, Plot No 1, Sector 4, Vaishali, Near Nazeer Food Restaurant, Ghaziabad, Uttar Pradesh, 201010",
+      "addressLocality": "Vaishali",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "201010",
+      "addressCountry": "IN"
+    },
+    "source": "https://www.lenskart.com/stores/optometrist-sunglasses-vaishali-sector-4-ghaziabad-60981/home",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "boho bistro vaishali": {
+    "name": "Boho bistro vaishali",
+    "latitude": 28.646648,
+    "longitude": 77.339891,
+    "address": "Boho-Bistro",
+    "source": "https://www.district.in/dining/ncr/boho-bistro-vaishali-ghaziabad",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "cp ministry of beer": {
+    "name": "cp ministry of beer",
+    "latitude": 28.633316514,
+    "longitude": 77.2227491811,
+    "address": "Ministry Of Beer",
+    "source": "https://www.district.in/dining/ncr/ministry-of-beer-connaught-place-new-delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "kesar pitampura": {
+    "name": "kesar pitampura",
+    "latitude": 28.688281786,
+    "longitude": 77.1219158918,
+    "address": "Kesar",
+    "source": "https://www.district.in/dining/ncr/kesar-pitampura-new-delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "pindi pandara road": {
+    "name": "pindi pandara road",
+    "latitude": 28.6079556214,
+    "longitude": 77.2298221663,
+    "address": "Pindi",
+    "source": "https://www.district.in/dining/ncr/pindi-pandara-road-new-delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "nebo ansal plaza": {
+    "name": "nebo ansal plaza",
+    "latitude": 28.5623102558,
+    "longitude": 77.2242954746,
+    "address": "Nebo - By The Sky High",
+    "source": "https://www.district.in/dining/ncr/nebo-khel-gaon-marg-new-delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "unwind cafe ansal plaza": {
+    "name": "unwind cafe ansal plaza",
+    "latitude": 28.562312,
+    "longitude": 77.224688,
+    "address": "Unwind Cafe",
+    "source": "https://www.district.in/dining/ncr/unwind-cafe-khel-gaon-marg-new-delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "delhi heights cafe nsp": {
+    "name": "delhi heights cafe nsp",
+    "latitude": 28.69529442,
+    "longitude": 77.15409222,
+    "address": "Cafe Delhi Heights",
+    "source": "https://www.district.in/dining/ncr/cafe-delhi-heights-netaji-subhash-place-new-delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "bobby punjabj rasoi": {
+    "name": "bobby punjabj rasoi",
+    "latitude": 28.7183196814,
+    "longitude": 77.1253276616,
+    "address": "Bobby Punjabi Rasoi",
+    "source": "https://www.district.in/dining/ncr/bobby-punjabi-rasoi-rohini-new-delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "aerocity novotel": {
+    "name": "Aerocity Novotel",
+    "latitude": 28.553492,
+    "longitude": 77.12324,
+    "source": "https://all.accor.com/hotel/7560/index.en.shtml",
+    "address": "Asset No 2, Aerocity Hospitality District, New Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "rohini sector 18 metro station": {
+    "name": "Rohini sector 18 metro station",
+    "latitude": 28.73838,
+    "longitude": 77.13985,
+    "source": "https://mapcarta.com/N2837147020",
+    "address": "Rohini Sector 18, 19 metro station, Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "bangla sahib": {
+    "name": "bangla sahib",
+    "latitude": 28.62646,
+    "longitude": 77.20883,
+    "source": "https://mapcarta.com/W839844482",
+    "address": "Gurdwara Bangla Sahib, New Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "jama masjid": {
+    "name": "Jama masjid",
+    "latitude": 28.6508305556,
+    "longitude": 77.2330611111,
+    "source": "https://www.wikidata.org/wiki/Q233678",
+    "address": "Jama Masjid, Old Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "venky college": {
+    "name": "Sri Venkateswara College (Venky)",
+    "latitude": 28.58872,
+    "longitude": 77.16706,
+    "source": "https://mapcarta.com/W531671391",
+    "address": "Benito Juarez Road, Dhaula Kuan, New Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "College campus point; identity and address confirmed on official website",
+    "website": "https://www.svc.ac.in/"
+  },
+  "divya jyoti apartments": {
+    "name": "Divya Jyoti Apartments",
+    "latitude": 28.736923,
+    "longitude": 77.139786,
+    "source": "https://www.beeindia.gov.in/WriteReadData/RTF1984/RTF-PDF-e1b78a871e013df5_1776149188.pdf",
+    "address": "Divya Jyoti Apartments, Sector 19, Rohini, Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "point published within named apartment complex"
+  },
+  "mahagun metro mall": {
+    "name": "Mahagun metro mall",
+    "latitude": 28.6448,
+    "longitude": 77.3355,
+    "source": "https://covistan.com/center/894892/Mahagun-Metro-Mall",
+    "address": "Mahagun Metro Mall, Sector 3, Vaishali, Ghaziabad",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "orchid petals gurgaon": {
+    "name": "orchid petals gurgaon",
+    "latitude": 28.414328,
+    "longitude": 77.045515,
+    "source": "https://www.findlatitudeandlongitude.com/l/Orchid%2BPetals%2C%2BSector%2B49%2C%2BGurgaon%2C%2BGurugram%2C%2BHaryana%2C%2BIndia/6713358/",
+    "address": "Orchid Petals, Sector 49, Gurugram",
+    "verifiedAt": "2026-10-24",
+    "precision": "named apartment complex"
+  },
+  "elegante mall": {
+    "name": "Home Centre - Elegante Mall",
+    "latitude": 28.6960686,
+    "longitude": 77.1536813,
+    "address": {
+      "@type": "PostalAddress",
+      "name": "Home Centre",
+      "image": "https://stores.homecentre.in/files/outlet/logo/242639/Home_Centre_Logo_png.png",
+      "streetAddress": "2nd Floor, Elegante Mall, Pitampura",
+      "addressLocality": "Netaji Shubhash Place",
+      "addressRegion": "New Delhi",
+      "postalCode": "110034",
+      "addressCountry": "India",
+      "telephone": [
+        "18002127500"
+      ],
+      "email": "dlinsphc.srmgr@landmarkgroup.in"
+    },
+    "source": "https://stores.homecentre.in/home-centre-home-furniture-shop-netaji-shubhash-place-new-delhi-487181/Contact-Us",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "32nd avenue": {
+    "name": "32nd avenue",
+    "latitude": 28.46155,
+    "longitude": 77.05006,
+    "source": "https://mapcarta.com/W266410029",
+    "address": "32nd Avenue / 32nd Milestone, Sector 15, Gurugram",
+    "verifiedAt": "2026-10-24",
+    "precision": "named commercial complex"
+  },
+  "salt stayz pitampura": {
+    "name": "salt stayz pitampura",
+    "latitude": 28.693416,
+    "longitude": 77.13513,
+    "source": "https://www.ehotelsreviews.com/saltstayz-select-13065476-en",
+    "address": "Saltstayz Select Pitampura, B-157 Lok Vihar, Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "park plaza shahdara": {
+    "name": "park plaza shahdara",
+    "latitude": 28.65868,
+    "longitude": 77.29802,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.65868,77.29802",
+    "verifiedAt": "2026-10-24",
+    "precision": "Hotel",
+    "provenance": "user-provided"
+  },
+  "national museum cp": {
+    "name": "National Museum CP",
+    "latitude": 28.61181,
+    "longitude": 77.21926,
+    "source": "https://world-art-galleries.com/en/galeries/national-museum/",
+    "address": "National Museum, Janpath, New Delhi",
+    "verifiedAt": "2026-10-24",
+    "precision": "venue listing"
+  },
+  "mayfield gardens sector 51 gurgaon": {
+    "name": "mayfield gardens sector 51 gurgaon",
+    "latitude": 28.42514,
+    "longitude": 77.05795,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.42514,77.05795",
+    "verifiedAt": "2026-10-24",
+    "precision": "B-block market anchor",
+    "provenance": "user-provided"
+  },
+  "crpf public school": {
+    "name": "crpf public school",
+    "latitude": 28.71027,
+    "longitude": 77.13237,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.71027,77.13237",
+    "verifiedAt": "2026-10-24",
+    "precision": "Mapped school footprint",
+    "provenance": "user-provided"
+  },
+  "nirman vihar cinepolis": {
+    "name": "nirman vihar cinepolis",
+    "latitude": 28.6372,
+    "longitude": 77.28651,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.6372,77.28651",
+    "verifiedAt": "2026-10-24",
+    "precision": "V3S Mall anchor",
+    "provenance": "user-provided"
+  },
+  "bharat mandapam bassi": {
+    "name": "bharat mandapam bassi",
+    "latitude": 28.61941,
+    "longitude": 77.24243,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.61941,77.24243",
+    "verifiedAt": "2026-10-24",
+    "precision": "Convention building",
+    "provenance": "user-provided"
+  },
+  "ramprastha": {
+    "name": "ramprastha",
+    "latitude": 28.65831,
+    "longitude": 77.3209,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.65831,77.3209",
+    "verifiedAt": "2026-10-24",
+    "precision": "A-block park anchor",
+    "provenance": "user-provided"
+  },
+  "ramprastha vaishali": {
+    "name": "ramprastha vaishali",
+    "latitude": 28.65831,
+    "longitude": 77.3209,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.65831,77.3209",
+    "verifiedAt": "2026-10-24",
+    "precision": "A-block park anchor",
+    "provenance": "user-provided"
+  },
+  "mcd shopprix vaishali": {
+    "name": "mcd shopprix vaishali",
+    "latitude": 28.6429,
+    "longitude": 77.3409,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.6429,77.3409",
+    "verifiedAt": "2026-10-24",
+    "precision": "Shopprix Mall anchor",
+    "provenance": "user-provided"
+  },
+  "nsp tasteland": {
+    "name": "nsp tasteland",
+    "latitude": 28.69245,
+    "longitude": 77.15011,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.69245,77.15011",
+    "verifiedAt": "2026-10-24",
+    "precision": "NSP neighbourhood only",
+    "provenance": "user-provided"
+  },
+  "jim corbett": {
+    "name": "jim corbett",
+    "latitude": 29.5586,
+    "longitude": 78.8794,
+    "source": "https://www.google.com/maps/search/?api=1&query=29.5586,78.8794",
+    "verifiedAt": "2026-10-24",
+    "precision": "Park reference point",
+    "provenance": "user-provided"
+  },
+  "manali": {
+    "name": "manali",
+    "latitude": 32.2455,
+    "longitude": 77.1873,
+    "source": "https://www.google.com/maps/search/?api=1&query=32.2455,77.1873",
+    "verifiedAt": "2026-10-24",
+    "precision": "Town reference point",
+    "provenance": "user-provided"
+  },
+  "nmacc": {
+    "name": "nmacc",
+    "latitude": 19.06528,
+    "longitude": 72.86709,
+    "source": "https://www.google.com/maps/search/?api=1&query=19.06528,72.86709",
+    "verifiedAt": "2026-10-24",
+    "precision": "Cultural centre building",
+    "provenance": "user-provided"
+  },
+  "wembley estate": {
+    "name": "wembley estate",
+    "latitude": 28.41394,
+    "longitude": 77.05649,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.41394,77.05649",
+    "verifiedAt": "2026-10-24",
+    "precision": "Estate club anchor",
+    "provenance": "user-provided"
+  },
+  "manesar": {
+    "name": "manesar",
+    "latitude": 28.36173,
+    "longitude": 76.94022,
+    "source": "https://www.google.com/maps/search/?api=1&query=28.36173,76.94022",
+    "verifiedAt": "2026-10-24",
+    "precision": "City reference point",
+    "provenance": "user-provided"
+  }
+}

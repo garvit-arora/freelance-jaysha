@@ -20,22 +20,28 @@ const weaknesses = [
   'Cannot walk past a dog without saying “Awww, baby!”',
 ]
 
-export function BeyondSection() {
-  const section = useRef<HTMLElement>(null)
+function useListReveal(section: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
     const media = gsap.matchMedia()
     media.add('(prefers-reduced-motion: no-preference)', () => {
-      const columns = gsap.utils.toArray<HTMLElement>('.beyond-trait-column', section.current)
-      const animations = columns.map((column, index) => gsap.fromTo(column,
-        { x: index === 0 ? -24 : 24, opacity: 0.65 },
-        { x: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: column, start: 'top 90%', end: 'top 45%', scrub: true } },
-      ))
-      return () => animations.forEach(animation => { animation.scrollTrigger?.kill(); animation.revert() })
+      const context = gsap.context(() => {
+        const items = gsap.utils.toArray<HTMLElement>('li', section.current)
+        gsap.set(items, { opacity: 0, y: 22 })
+        ScrollTrigger.batch(items, {
+          start: 'top 90%', once: true, interval: 0.12,
+          onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out', overwrite: 'auto' }),
+        })
+      }, section)
+      return () => context.revert()
     })
     ScrollTrigger.refresh()
     return () => media.revert()
-  }, [])
+  }, [section])
+}
 
+export function BeyondSection() {
+  const section = useRef<HTMLElement>(null)
+  useListReveal(section)
   return <section ref={section} className="beyond-section" aria-label="Strengths and weaknesses">
     <div className="beyond-traits">
       <div className="beyond-trait-column beyond-strengths">
@@ -46,9 +52,6 @@ export function BeyondSection() {
         <h2>Weaknesses</h2>
         <ul>{weaknesses.map(text => <li key={text}>{text}</li>)}</ul>
       </div>
-    </div>
-    <div className="beyond-character">
-      <img src="/anveshan/near-strength-nobg.png" alt="Jaysha" loading="lazy" decoding="async" onLoad={() => ScrollTrigger.refresh()} />
     </div>
   </section>
 }
@@ -75,7 +78,9 @@ const threats = [
 ]
 
 function TraitList({ title, items }: { title: string; items: string[] }) {
-  return <section className="beyond-list-section" aria-label={title}>
+  const section = useRef<HTMLElement>(null)
+  useListReveal(section)
+  return <section ref={section} className="beyond-list-section" aria-label={title}>
     <div className="beyond-list-content"><h2>{title}</h2><ol>{items.map((text, index) => <li key={text}><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><p>{text}</p></li>)}</ol></div>
   </section>
 }

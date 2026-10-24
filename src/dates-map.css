@@ -49,3 +49,4 @@
   .all-memories-button { left: 10px; bottom: 64px; }
   .studio-map-caption span { max-width: 100%; }
 }
+.map-memories-panel .memory-google-maps{display:flex;align-items:center;gap:7px;color:#d4bc91;font-size:11px;padding:0 14px 14px;text-decoration:underline;text-underline-offset:3px}.map-memories-panel .memory-google-maps:hover{color:#f4e9d3}.map-memories-panel .memory-google-maps:focus-visible{outline:2px solid #c8b18c;outline-offset:2px}

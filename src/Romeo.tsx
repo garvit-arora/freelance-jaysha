@@ -45,7 +45,7 @@ export function RomeoPage() {
   }, [chapter])
   const current = romeoChapters[chapter]
   return <main className="romeo-page"><header className="romeo-page-header"><Link to="/explore"><ArrowLeft size={17} /> Our world</Link><span>A VERY UNOFFICIAL LOVE STORY</span><Heart size={17} /></header>
-    <div className="romeo-introduction"><span>FROM A COMPLIMENT TO A WHOLE LIFE</span><h1>Ek the Romeo<span>.</span></h1><h2>One girl. Eight chapters. One hopeless romantic</h2><p>Once upon a time, there was a perfectly normal boy. Then he came across a girl with a pretty smile, and things went slightly downhill from there.</p></div>
+    <div className="romeo-introduction"><span>FROM A COMPLIMENT TO A WHOLE LIFE</span><h1>Ek tha majnu<span>.</span></h1><h2>One girl. Eight chapters. One hopeless romantic</h2><p>Once upon a time, there was a perfectly normal boy. Then he came across a girl with a pretty smile, and things went slightly downhill from there.</p></div>
     <section className="romeo-book" aria-label="Eight chapters of our story">
       <nav className="romeo-years" aria-label="Story years">{years.map(year => {
         const first = romeoChapters.findIndex(item => item.year === year)

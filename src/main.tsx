@@ -9,7 +9,6 @@ import { RomeoPage } from './Romeo'
 import { ImpressionsPage } from './Impressions'
 import { BeyondSection, SpecialAbilitiesSection, ThreatsSection } from './BeyondSection'
 import { HamburgerMenu } from './HamburgerMenu'
-import ScrollExpand from './ScrollExpand'
 import { ContactButton } from './ContactButton'
 import SlideCommit from './SlideCommit'
 import { DictionaryPage, LoginPage } from './PersonalPages'
@@ -63,7 +62,7 @@ function App() {
   const location = useLocation()
   const exploring = location.pathname === '/explore' || (location.pathname === '/' && location.hash === '#explore')
   useLayoutEffect(() => {
-    if (['/impressions', '/romeo', '/story'].includes(location.pathname)) return
+    if (['/impressions', '/romeo', '/story', '/dates'].includes(location.pathname)) return
     const motion = gsap.matchMedia()
     motion.add('(prefers-reduced-motion: no-preference)', () => {
       // The smoother must exist before any pinned ScrollTriggers.
@@ -87,7 +86,7 @@ function App() {
     if (exploring) document.querySelector<HTMLElement>('main')?.focus({ preventScroll: true })
     ScrollTrigger.refresh()
   }, [location.pathname, exploring])
-  return <><div id="smooth-wrapper"><div id="smooth-content"><Routes>
+  return <>{exploring && <div className="explore-fixed-background" aria-hidden="true" />}<div id="smooth-wrapper"><div id="smooth-content"><Routes>
     <Route path="/" element={exploring ? <Hero /> : <Intro />} />
     <Route path="/explore" element={<Hero />} />
     <Route path="/login" element={<LoginPage />} />
@@ -100,26 +99,18 @@ function App() {
     <Route path="/calendar/:date" element={<DatePage />} />
     <Route path="/dates" element={<React.Suspense fallback={<main className="world-page" role="status">Loading our map…</main>}><DatesMap /></React.Suspense>} />
     <Route path="*" element={<NotFound />} />
-  </Routes></div></div><HamburgerMenu />{location.pathname !== '/impressions' && <ContactButton />}</>
+  </Routes></div></div><HamburgerMenu />{!['/impressions', '/dates'].includes(location.pathname) && <ContactButton />}</>
 }
 
 function Hero() {
 
   return (
-    <main tabIndex={-1} aria-label="Explore" className="site-texture font-hn text-cream outline-none">
-    <section aria-label="A little more of our world" className="bg-black text-cream">
-      <ScrollExpand
-        src="/bg-post-timeline.jpeg"
-        mediaBlur={8}
-        alt="Jaysha"
-        title="Our world, a little closer"
-        scrollHint="Scroll to explore"
-        useWindowScroll
-        style={{ width: '100%' }}
-      >
-        <h2 className="font-hn text-[clamp(2.5rem,7vw,6rem)] leading-tight">Every little thing, you.</h2>
-        <p className="mt-5 max-w-xl font-hn text-lg leading-relaxed sm:text-2xl">Of all the things I want to give you in this life, I hope making you feel loved is the one I never stop doing</p>
-      </ScrollExpand>
+    <main tabIndex={-1} aria-label="Explore" className="explore-page site-texture font-hn text-cream outline-none">
+    <section aria-label="Our world, a little closer" className="explore-photo-hero">
+      <img src="/bg-post-timeline.jpeg" alt="Jaysha" className="explore-photo-image" fetchPriority="high" />
+      <div className="explore-photo-shade" aria-hidden="true" />
+      <div className="explore-photo-copy"><span>Our world, a little closer</span><h1>Every little thing, you.</h1><p>Of all the things I want to give you in this life, I hope making you feel loved is the one I never stop doing</p></div>
+      <span className="explore-photo-hint">Scroll to explore ?</span>
     </section>
     <SpecialAbilitiesSection />
     <BeyondSection />

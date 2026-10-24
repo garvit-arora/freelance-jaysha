@@ -1,0 +1,22 @@
+{
+  "park plaza": [
+    {
+      "name": "Park Plaza, Gurugram",
+      "latitude": 28.4595,
+      "longitude": 77.07574,
+      "source": "https://www.google.com/maps/search/?api=1&query=28.4595,77.07574",
+      "verifiedAt": "2026-10-24",
+      "precision": "Hotel; branch assumed",
+      "provenance": "user-provided"
+    },
+    {
+      "name": "Park Plaza, Shahdara",
+      "latitude": 28.65868,
+      "longitude": 77.29802,
+      "source": "https://www.google.com/maps/search/?api=1&query=28.65868,77.29802",
+      "verifiedAt": "2026-10-24",
+      "precision": "Hotel; alternative",
+      "provenance": "user-provided"
+    }
+  ]
+}

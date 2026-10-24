@@ -1,6 +1,6 @@
 // Month interval and week grouping adapted from origin-space/event-calendar (MIT).
 // See third-party/event-calendar-LICENSE.md.
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { addMonths, eachDayOfInterval, endOfMonth, format, isToday, startOfMonth } from 'date-fns'
 import { ArrowLeft, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react'
@@ -10,6 +10,7 @@ import './stories-calendar.css'
 import { CalendarPicker } from './CalendarPicker'
 import { listMedia, useSession } from './lib/cloud'
 export { DateGallery as DatePage } from './DateGallery'
+const DatesMap = lazy(() => import('./DatesMap'))
 
 const dateKey = (date: Date) => format(date, 'dd-MM-yyyy')
 const dateLabel = (date: Date) => format(date, 'EEEE, d MMMM yyyy')
@@ -20,6 +21,13 @@ export function PageHeader({ title }: { title: string }) {
 
 export function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date())
+  const [showMap, setShowMap] = useState(false)
+  const mapSection = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) { setShowMap(true); observer.disconnect() } }, { threshold: 0.05 })
+    if (mapSection.current) observer.observe(mapSection.current)
+    return () => observer.disconnect()
+  }, [])
   const [media, setMedia] = useState<import('./lib/cloud').Media[]>([])
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   const [retry, setRetry] = useState(0)
@@ -48,6 +56,7 @@ export function CalendarPage() {
         return <Link key={date} to={destination} className={`stories-day ${cover ? 'has-memory' : ''} ${isToday(day) ? 'today' : ''}`} onClick={event => { if (loading || status !== 'ready') event.preventDefault() }} aria-disabled={loading || status !== 'ready'} aria-label={`${dateLabel(day)}: ${cover ? 'view memories' : 'add memories'}`} aria-current={isToday(day) ? 'date' : undefined}>{cover && <img src={cover} alt="" loading="lazy" />}<time dateTime={format(day, 'yyyy-MM-dd')}>{format(day, 'd')}</time></Link>
       })}</div></section>
     })}</div><p className="stories-note">Every circle holds a memory. Open any day to view or add yours.</p>
+    <section ref={mapSection} className="calendar-map-section" aria-labelledby="calendar-map-title"><header><span>THE PLACES BEHIND THE DAYS</span><h2 id="calendar-map-title">Our dates, on the map</h2><p>Explore a place and the memories we made there.</p></header>{showMap ? <Suspense fallback={<div className="calendar-map-loading" role="status">Opening our map?</div>}><DatesMap embedded /></Suspense> : <div className="calendar-map-loading" aria-hidden="true" />}</section>
   </main>
 }
 
