@@ -1,0 +1,24 @@
+﻿/* Shared timeline paper texture across all page backgrounds. */
+:root{--page-texture:linear-gradient(rgba(10,10,10,.72),rgba(10,10,10,.72)),url('/anveshan/background.png');--page-texture-size:auto,100px 100px}
+html body,
+html body .site-texture,
+html body .intro-screen,
+html body .world-page,
+html body .stories-calendar,
+html body .photos-page,
+html body .romeo-page,
+html body .romantic-login,
+html body .impressions-page,
+html body main[aria-label="Explore"]>section,
+html body .impressions-whatsapp .impressions-chat,
+html body .impressions-whatsapp .impressions-sidebar,
+html body .impressions-whatsapp .impressions-details,
+html body .site-menu-panel{
+ background-color:#0a0a0a;
+ background-image:var(--page-texture);
+ background-size:var(--page-texture-size);
+ background-position:0 0;
+ background-repeat:repeat;
+}
+html body .romantic-login-background{background-image:var(--page-texture);background-size:var(--page-texture-size);background-repeat:repeat;filter:none;transform:none;inset:0}
+html body .romantic-login:after{background:transparent}

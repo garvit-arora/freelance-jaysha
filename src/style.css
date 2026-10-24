@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Melodrama';
+  src: url('https://madhurvirli.com/fonts/melodrama-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://madhurvirli.com/fonts/satoshi-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+.intro-screen {
+  position: relative;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  overflow: hidden;
+  padding: 32px 24px;
+  background: #000;
+  color: #efeee9;
+  text-align: center;
+}
+.intro-copy { width: 100%; max-width: 1050px; padding-bottom: 32px; }
+.intro-heading { margin: 0 auto 26px; font-family: 'Melodrama', Georgia, serif; font-size: clamp(38px, 5.8vw, 88px); font-weight: 400; line-height: 1.15; text-wrap: balance; }
+.intro-heading span { display: inline; animation: intro-character 650ms ease both; }
+.intro-subtitle { font-family: 'Melodrama', Georgia, serif; font-size: clamp(18px, 2vw, 26px); line-height: 1.9; color: #b9b8ae; }
+.intro-step { display: inline-block; animation: fade-up 850ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.intro-footer { position: absolute; bottom: 28px; left: 24px; right: 24px; font-family: 'Melodrama', Georgia, serif; font-size: 14px; color: #85857b; }
+.intro-explore { margin-top: 32px; padding: 10px 0; border-bottom: 1px solid #85857b; font-family: 'Melodrama', Georgia, serif; font-size: 22px; transition: color 200ms, border-color 200ms; }
+.intro-explore span { margin-left: 24px; }
+.intro-explore:hover { color: #b9b8ae; border-color: #efeee9; }
+.intro-slide { border-radius: 28px; font-family: 'Satoshi', Helvetica, Arial, sans-serif; box-shadow: 0 0 0 1px rgba(239, 238, 233, .22), 0 8px 24px rgba(0, 0, 0, .25); transition: box-shadow 200ms ease; }
+.intro-slide:hover, .intro-slide:focus-within { box-shadow: 0 0 0 1px rgba(239, 238, 233, .5), 0 8px 24px rgba(0, 0, 0, .25); }
+@keyframes intro-character { from { opacity: 0; filter: blur(5px); } to { opacity: 1; filter: blur(0); } }
+
+html, body, #root { width: 100%; min-height: 100%; margin: 0; }
+html { scroll-behavior: smooth; }
+body { background: #000; overflow-x: hidden; font-family: 'Melodrama', Georgia, serif; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 1px solid #efeee9; outline-offset: 5px; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(4vh) scale(1.03); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.anim-fade-in { animation: fade-in 1.2s ease-out both; }
+.anim-rise-in { animation: rise-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-fade-up { animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-line { transform-origin: left; animation: line 1.1s cubic-bezier(0.76, 0, 0.24, 1) both; }
+.marquee { animation: marquee 30s linear infinite; }
+.drawer { transition: transform 600ms cubic-bezier(0.76, 0, 0.24, 1); }
+.drawer-reveal { transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease; }
+.hamburger-bar { transition: transform 500ms cubic-bezier(0.76, 0, 0.24, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

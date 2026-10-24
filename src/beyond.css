@@ -1,0 +1,34 @@
+﻿@font-face {
+  font-family: 'Bamboly Demo';
+  src: url('https://db.onlinewebfonts.com/t/58ee300970307a1cc399e6bebd7617ce.woff2') format('woff2'), url('https://db.onlinewebfonts.com/t/58ee300970307a1cc399e6bebd7617ce.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+.beyond-section { position: relative; isolation: isolate; width: 100%; min-height: 100dvh; overflow: hidden; background: #000; color: #fff; }
+.beyond-traits { position: relative; z-index: 20; display: grid; grid-template-columns: 1fr .9fr 1fr; align-items: start; gap: 24px; min-height: 100dvh; padding: 80px 5vw; }
+.beyond-trait-column { display: flex; flex-direction: column; min-width: 0; width: 100%; }
+.beyond-strengths { grid-column: 1; align-items: flex-start; text-align: left; }
+.beyond-weaknesses { grid-column: 3; align-items: flex-end; text-align: right; }
+.beyond-trait-column h2 { margin: 0 0 32px; font-family: 'Bamboly Demo', sans-serif; font-size: clamp(2.3rem, 4vw, 4rem); font-weight: 400; line-height: 1; }
+.beyond-trait-column ul { display: flex; flex-direction: column; width: 100%; gap: 22px; margin: 0; padding: 0; list-style: none; }
+.beyond-trait-column li { font-family: Poppins, sans-serif; font-size: clamp(14px, 1.3vw, 20px); font-weight: 500; line-height: 1.65; overflow-wrap: break-word; }
+.beyond-character { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+.beyond-character img { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: block; width: 42%; height: 100%; max-width: none; object-fit: contain; object-position: center bottom; }
+@media (max-width: 767px) {
+  .beyond-traits { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 54px 28px 32px; gap: 48px; }
+  .beyond-strengths, .beyond-weaknesses { grid-column: 1; }
+  .beyond-trait-column h2 { margin-bottom: 24px; font-size: 2.8rem; }
+  .beyond-trait-column ul { gap: 18px; }
+  .beyond-trait-column li { font-size: 15px; }
+  .beyond-character { position: relative; height: 65vh; max-height: 600px; margin-top: 8px; }
+  .beyond-character img { width: 100%; }
+}
+.beyond-list-section { background: #000; color: #efeee9; padding: 85px 6vw; }
+.beyond-list-content { width: 100%; max-width: 1000px; margin: 0 auto; }
+.beyond-list-content h2 { margin: 0 0 42px; font-family: 'Bamboly Demo', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; }
+.beyond-list-content ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.beyond-list-content li { display: flex; align-items: baseline; gap: clamp(20px, 4vw, 48px); border-top: 1px solid #ffffff26; padding: 23px 0; }
+.beyond-list-content li:last-child { border-bottom: 1px solid #ffffff26; }
+.beyond-list-content li > span { flex-shrink: 0; color: #767670; font-family: 'Satoshi', Arial, sans-serif; font-size: 12px; letter-spacing: .08em; }
+.beyond-list-content li > p { margin: 0; font-family: Poppins, sans-serif; font-size: clamp(15px, 1.6vw, 21px); font-weight: 400; line-height: 1.7; }
+@media (max-width: 767px) { .beyond-list-section { padding: 55px 28px; } .beyond-list-content h2 { margin-bottom: 30px; } .beyond-list-content li { padding: 19px 0; } }
