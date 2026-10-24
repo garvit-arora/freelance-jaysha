@@ -78,3 +78,4 @@ a, button { -webkit-tap-highlight-color: transparent; }
     transition-delay: 0ms !important;
   }
 }
+.intro-heading.intro-love-line{max-width:950px;font-size:clamp(28px,4.2vw,58px);line-height:1.5;margin-bottom:16px;color:#efeee9}.intro-heading .intro-word{display:inline-block;white-space:nowrap;animation:none}.intro-heading .intro-letter{display:inline;animation:intro-character 1200ms ease both}@media(prefers-reduced-motion:reduce){.intro-heading .intro-letter{animation:none}}

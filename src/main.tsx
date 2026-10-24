@@ -22,21 +22,22 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` })
 
 function Intro() {
-  const heading = 'Jaysha'
+  const heading = 'Of all the things I want to give you in this life, I hope making you feel loved is the one I never stop doing'
+  const revealEnd = 200 + heading.length * 100 + 1200
   const navigate = useNavigate()
   const navigateTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   useEffect(() => () => clearTimeout(navigateTimer.current), [])
 
   return (
-    <section className="intro-screen site-texture" aria-label="Birthday welcome">
+    <section className="intro-screen site-texture" aria-label="Welcome">
       <div className="intro-copy">
-        <h1 className="intro-heading" aria-label={heading}>
-          {Array.from(heading).map((character, i) => <span aria-hidden="true" key={i} style={{ animationDelay: `${200 + i * 45}ms` }}>{character === ' ' ? '\u00a0' : character}</span>)}
+        <h1 className="intro-heading intro-love-line" aria-label={heading}>
+          {heading.split(' ').map((word, wordIndex, words) => {
+            const offset = words.slice(0, wordIndex).join(' ').length + (wordIndex ? 1 : 0)
+            return <React.Fragment key={wordIndex}><span className="intro-word" aria-hidden="true">{Array.from(word).map((character, i) => <span className="intro-letter" key={i} style={{ animationDelay: `${200 + (offset + i) * 100}ms` }}>{character}</span>)}</span>{wordIndex < words.length - 1 ? ' ' : ''}</React.Fragment>
+          })}
         </h1>
-        <p className="intro-subtitle">
-          <span className="intro-step" style={delay(1250)}>Of all the things I want to give you in this life, I hope making you feel loved is the one I never stop doing</span>
-        </p>
-        <div className="intro-step mt-8" style={delay(1600)}>
+        <div className="intro-step mt-8" style={delay(revealEnd)}>
           <SlideCommit
             label="Slide to Explore"
             doneLabel="Let’s explore"
@@ -53,7 +54,7 @@ function Intro() {
           />
         </div>
       </div>
-      <footer className="intro-footer intro-step" style={delay(1900)}>Made just for you</footer>
+      <footer className="intro-footer intro-step" style={delay(revealEnd + 300)}>Made just for you</footer>
     </section>
   )
 }
