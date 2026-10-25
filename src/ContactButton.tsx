@@ -38,9 +38,9 @@ export function ContactButton() {
       setContacting(false)
       setOpen(true)
     } })
-      .to(label.current, { duration: 1, text: { value: 'Contacting her...', type: 'diff' }, ease: 'sine.in' })
-      .to(label.current, { duration: .6, text: { value: 'Contacting her', type: 'diff' }, ease: 'sine.inOut', repeat: 4, yoyo: true })
-      .to({}, { duration: .5 })
+      .to(label.current, { duration: .25, text: { value: 'Contacting her...', type: 'diff' }, ease: 'sine.in' })
+      .to(label.current, { duration: .15, text: { value: 'Contacting her', type: 'diff' }, ease: 'sine.inOut', repeat: 1, yoyo: true })
+      .to({}, { duration: .05 })
   }
   useEffect(() => {
     if (!open) {
