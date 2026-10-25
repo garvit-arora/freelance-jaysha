@@ -3,13 +3,17 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { CalendarPage, DatePage, NotFound, SectionPage } from './Calendar'
 import { RomeoPage } from './Romeo'
 import { ImpressionsPage } from './Impressions'
 import { BeyondSection, SpecialAbilitiesSection, ThreatsSection } from './BeyondSection'
 import { HamburgerMenu } from './HamburgerMenu'
 import { ContactButton } from './ContactButton'
+import { AboutHer } from './AboutHer'
+import { MagicButtonsPage } from './MagicButtons'
+import { MusicButton } from './MusicButton'
+import './refinements.css'
 import SlideCommit from './SlideCommit'
 import { DictionaryPage, LoginPage } from './PersonalPages'
 const DatesMap = React.lazy(() => import('./DatesMap'))
@@ -26,6 +30,18 @@ function Intro() {
   const navigate = useNavigate()
   const navigateTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   useEffect(() => () => clearTimeout(navigateTimer.current), [])
+  useEffect(() => {
+    let started = false
+    const startSong = (event: MouseEvent) => {
+      if (started) return
+      started = true
+      if ((event.target as Element)?.closest?.('.site-music')) return
+      window.dispatchEvent(new Event('archive-play-compilation-song'))
+    }
+    document.addEventListener('click', startSong)
+    return () => document.removeEventListener('click', startSong)
+  }, [])
+
 
   return (
     <section className="intro-screen site-texture" aria-label="Welcome">
@@ -41,7 +57,7 @@ function Intro() {
             label="Slide to Explore"
             doneLabel="Let’s explore"
             errorLabel="Please try again"
-            onDone={() => { navigateTimer.current = setTimeout(() => navigate('/explore'), 600) }}
+            onDone={() => { navigateTimer.current = setTimeout(() => navigate('/home'), 600) }}
             className="intro-slide"
             trackColor="#181816"
             handleColor="#efeee9"
@@ -60,7 +76,7 @@ function Intro() {
 
 function App() {
   const location = useLocation()
-  const exploring = location.pathname === '/explore' || (location.pathname === '/' && location.hash === '#explore')
+  const exploring = location.pathname === '/home' || (location.pathname === '/' && location.hash === '#explore')
   useLayoutEffect(() => {
     if (['/impressions', '/romeo', '/story', '/dates'].includes(location.pathname)) return
     const motion = gsap.matchMedia()
@@ -71,7 +87,7 @@ function App() {
         content: '#smooth-content',
         smooth: 2,
         effects: true,
-        normalizeScroll: location.pathname !== '/dates',
+        normalizeScroll: { allowNestedScroll: true },
       })
       if (exploring) {
         smoother.scrollTo(0, false)
@@ -87,9 +103,11 @@ function App() {
     ScrollTrigger.refresh()
   }, [location.pathname, exploring])
   return <>{exploring && <div className="explore-fixed-background" aria-hidden="true" />}<div id="smooth-wrapper"><div id="smooth-content"><Routes>
-    <Route path="/" element={exploring ? <Hero /> : <Intro />} />
-    <Route path="/explore" element={<Hero />} />
+    <Route path="/" element={exploring ? <Navigate to="/home" replace /> : <Intro />} />
+    <Route path="/home" element={<Hero />} />
+    <Route path="/explore" element={<Navigate to="/home" replace />} />
     <Route path="/login" element={<LoginPage />} />
+    <Route path="/magic-buttons" element={<MagicButtonsPage />} />
     <Route path="/impressions" element={<ImpressionsPage />} />
     <Route path="/dictionary" element={<DictionaryPage />} />
     <Route path="/about" element={<SectionPage title="About" />} />
@@ -99,7 +117,7 @@ function App() {
     <Route path="/calendar/:date" element={<DatePage />} />
     <Route path="/dates" element={<React.Suspense fallback={<main className="world-page" role="status">Loading our map…</main>}><DatesMap /></React.Suspense>} />
     <Route path="*" element={<NotFound />} />
-  </Routes></div></div><HamburgerMenu />{!['/impressions', '/dates'].includes(location.pathname) && <ContactButton />}</>
+  </Routes></div></div><HamburgerMenu /><MusicButton />{!['/impressions', '/dates'].includes(location.pathname) && <ContactButton />}</>
 }
 
 function Hero() {
@@ -110,8 +128,9 @@ function Hero() {
       <img src="/bg-post-timeline.jpeg" alt="Jaysha" className="explore-photo-image" fetchPriority="high" />
       <div className="explore-photo-shade" aria-hidden="true" />
       <div className="explore-photo-copy"><span>Our world, a little closer</span><h1>Every little thing, you.</h1><p>Of all the things I want to give you in this life, I hope making you feel loved is the one I never stop doing</p></div>
-      <span className="explore-photo-hint">Scroll to explore ?</span>
+      <span className="explore-photo-hint">Scroll to explore &#8595;</span>
     </section>
+    <AboutHer />
     <SpecialAbilitiesSection />
     <BeyondSection />
     <ThreatsSection />

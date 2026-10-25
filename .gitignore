@@ -11,3 +11,11 @@ dist/
 # Chapter originals are preserved locally; the site uses uploaded ImageKit media.
 public/chapters/
 supabase/.temp/
+
+# Source compilation; the website serves extracted audio clips.
+public/song-videos.[mM][pP]4
+
+__pycache__/
+
+# Audio extracted from song-videos is hosted on ImageKit.
+public/song-clips/

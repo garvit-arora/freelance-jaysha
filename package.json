@@ -13,7 +13,8 @@
     "cloud:deploy": "node scripts/deploy-cloud.mjs",
     "test:cloud": "node scripts/test-cloud.mjs",
     "test:impressions": "node scripts/test-impressions.mjs",
-    "chapters:upload": "node scripts/upload-chapters.mjs"
+    "chapters:upload": "node scripts/upload-chapters.mjs",
+    "songs:download": "python scripts/download-shorts.py"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.3.5",

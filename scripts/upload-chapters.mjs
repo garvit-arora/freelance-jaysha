@@ -9,7 +9,10 @@ const files = [
  ['chapter1','public/chapters/first-chapter.PNG','image'],['chapter2','public/chapters/second-chapter.PNG','image'],['chapter3','public/chapters/chapter3.PNG','image'],['chapter4','public/chapters/chapter4.jpg','image'],
  ...['chapter5','v1','v2','v3','chapter7'].flatMap(name => [[name,`.tools/chapter-media/${name}.mp4`,'video'],[`${name}Poster`,`.tools/chapter-media/${name}-poster.jpg`,'image']]),
 ]
+const only = process.argv.find(value => value.startsWith('--only='))?.slice(7)
+if (only && !files.some(([id]) => id === only)) throw new Error('Unknown chapter media ID: ' + only)
 for (const [id,path,kind] of files) {
+ if (only && id !== only) continue
  const bytes = await readFile(new URL('../'+path, import.meta.url)), hash = createHash('sha256').update(bytes).digest('hex')
  if (manifest[id]?.hash === hash) { console.log('Already uploaded:',id); continue }
  const form = new FormData()

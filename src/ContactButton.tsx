@@ -24,7 +24,7 @@ export function ContactButton() {
     running.current = false
     setContacting(false)
     setOpen(false)
-    if (label.current) label.current.textContent = 'Contact'
+    if (label.current) label.current.textContent = 'Contact her'
     return () => { timeline.current?.kill(); running.current = false }
   }, [location.pathname])
   const contact = () => {
@@ -38,13 +38,13 @@ export function ContactButton() {
       setContacting(false)
       setOpen(true)
     } })
-      .to(label.current, { duration: 1, text: { value: 'Contacting...', type: 'diff' }, ease: 'sine.in' })
-      .to(label.current, { duration: .6, text: { value: 'Contacting', type: 'diff' }, ease: 'sine.inOut', repeat: 4, yoyo: true })
+      .to(label.current, { duration: 1, text: { value: 'Contacting her...', type: 'diff' }, ease: 'sine.in' })
+      .to(label.current, { duration: .6, text: { value: 'Contacting her', type: 'diff' }, ease: 'sine.inOut', repeat: 4, yoyo: true })
       .to({}, { duration: .5 })
   }
   useEffect(() => {
     if (!open) {
-      if (!running.current && label.current) label.current.textContent = 'Contact'
+      if (!running.current && label.current) label.current.textContent = 'Contact her'
       return
     }
     if (!dialog.current) return
@@ -64,12 +64,12 @@ export function ContactButton() {
   }, [open])
 
   return createPortal(<>
-    <button ref={button} type="button" className="contact-button" aria-label={contacting ? 'Contacting Jayasha' : 'Contact Jayasha'} aria-busy={contacting} aria-disabled={contacting} aria-haspopup="dialog" aria-controls="contact-dialog" onClick={contact}><span ref={label} aria-hidden="true">Contact</span><span aria-hidden="true">↗</span></button>
-    <span className="sr-only" role="status">{contacting ? 'Contacting Jayasha…' : ''}</span>
-    <dialog ref={dialog} id="contact-dialog" className="contact-dialog" aria-label="Contact Jayasha" onCancel={() => setOpen(false)} onClose={() => setOpen(false)} onKeyDown={event => event.stopPropagation()} onClick={event => { if (event.target === event.currentTarget) setOpen(false) }}>
+    <button ref={button} type="button" className="contact-button" aria-label={contacting ? 'Contacting her' : 'Contact her'} aria-busy={contacting} aria-disabled={contacting} aria-haspopup="dialog" aria-controls="contact-dialog" onClick={contact}><span ref={label} aria-hidden="true">Contact her</span><span aria-hidden="true">↗</span></button>
+    <span className="sr-only" role="status">{contacting ? 'Contacting her…' : ''}</span>
+    <dialog ref={dialog} id="contact-dialog" className="contact-dialog" aria-label="Contact her" onCancel={() => setOpen(false)} onClose={() => setOpen(false)} onKeyDown={event => event.stopPropagation()} onClick={event => { if (event.target === event.currentTarget) setOpen(false) }}>
       <div className="contact-image-wrap">
         <button type="button" className="contact-close" aria-label="Close contact" onClick={() => setOpen(false)} autoFocus><X size={24} strokeWidth={1.5} /></button>
-        <img src="/anveshan/contact.jpeg" alt="Contact Jayasha" className="contact-image" decoding="async" />
+        <img src="/anveshan/contact.jpeg" alt="Contact her" className="contact-image" decoding="async" />
       </div>
     </dialog>
   </>, document.body)

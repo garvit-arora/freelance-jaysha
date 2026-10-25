@@ -16,7 +16,7 @@ const dateKey = (date: Date) => format(date, 'dd-MM-yyyy')
 const dateLabel = (date: Date) => format(date, 'EEEE, d MMMM yyyy')
 
 export function PageHeader({ title }: { title: string }) {
-  return <header className="world-header"><Link to="/explore" className="world-back"><ArrowLeft size={18} /> Our world</Link></header>
+  return <header className="world-header"><Link to="/home" className="world-back"><ArrowLeft size={18} /> Our world</Link></header>
 }
 
 export function CalendarPage() {
@@ -43,7 +43,8 @@ export function CalendarPage() {
   media.forEach(item => { if (!covers.has(item.memory_date)) covers.set(item.memory_date, item.thumbnail_url || item.url) })
   const months = [currentDate]
   return <main className="stories-calendar">
-    <header className="stories-header"><Link to="/explore" aria-label="Back to our world"><ArrowLeft size={25} /></Link><h1>Stories Archive</h1><Link to="/dictionary" aria-label="Open Jaysha-to-English translator"><BookOpen size={21} aria-hidden="true" /></Link></header>
+    <header className="stories-header"><Link to="/home" aria-label="Back to our world"><ArrowLeft size={25} /></Link><h1>Stories Archive</h1><Link to="/dictionary" aria-label="Open Jaysha-to-English translator"><BookOpen size={21} aria-hidden="true" /></Link></header>
+    <section ref={mapSection} className="calendar-map-section" aria-labelledby="calendar-map-title"><header><span>THE PLACES BEHIND THE DAYS</span><h2 id="calendar-map-title">Our dates, on the map</h2><p>Explore a place and the memories we made there.</p></header>{showMap ? <Suspense fallback={<div className="calendar-map-loading" role="status">Opening our map?</div>}><DatesMap embedded /></Suspense> : <div className="calendar-map-loading" aria-hidden="true" />}</section>
     <div className="stories-tabs"><span aria-current="page">CALENDAR</span></div>
     <div className="stories-controls"><button onClick={() => setCurrentDate(value => addMonths(value, -1))} aria-label="Previous month"><ChevronLeft size={20} /></button><CalendarPicker value={currentDate} onChange={setCurrentDate} /><button onClick={() => setCurrentDate(value => addMonths(value, 1))} aria-label="Next month"><ChevronRight size={20} /></button><button onClick={() => setCurrentDate(new Date())}>Today</button></div>
     {status === 'loading' && <p className="stories-status" role="status">Loading memories?</p>}
@@ -56,7 +57,7 @@ export function CalendarPage() {
         return <Link key={date} to={destination} className={`stories-day ${cover ? 'has-memory' : ''} ${isToday(day) ? 'today' : ''}`} onClick={event => { if (loading || status !== 'ready') event.preventDefault() }} aria-disabled={loading || status !== 'ready'} aria-label={`${dateLabel(day)}: ${cover ? 'view memories' : 'add memories'}`} aria-current={isToday(day) ? 'date' : undefined}>{cover && <img src={cover} alt="" loading="lazy" />}<time dateTime={format(day, 'yyyy-MM-dd')}>{format(day, 'd')}</time></Link>
       })}</div></section>
     })}</div><p className="stories-note">Every circle holds a memory. Open any day to view or add yours.</p>
-    <section ref={mapSection} className="calendar-map-section" aria-labelledby="calendar-map-title"><header><span>THE PLACES BEHIND THE DAYS</span><h2 id="calendar-map-title">Our dates, on the map</h2><p>Explore a place and the memories we made there.</p></header>{showMap ? <Suspense fallback={<div className="calendar-map-loading" role="status">Opening our map?</div>}><DatesMap embedded /></Suspense> : <div className="calendar-map-loading" aria-hidden="true" />}</section>
+
   </main>
 }
 

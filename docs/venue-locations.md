@@ -42,7 +42,7 @@ Pins use published or user-supplied coordinates without visual offsets. Supplied
 
 ## Park Plaza branch choice
 
-The unspecified visit remains unpinned. Its memory card offers both branches for Street View:
+The unspecified visit remains unpinned. Its memory card offers both branches for its memory popup:
 
 - Park Plaza, Gurugram: 28.4595, 77.07574 / Hotel; branch assumed (user-provided).
 - Park Plaza, Shahdara: 28.65868, 77.29802 / Hotel; alternative (user-provided).

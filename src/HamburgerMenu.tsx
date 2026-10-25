@@ -6,10 +6,12 @@ import { Menu, X, ArrowUpRight } from 'lucide-react'
 import './navigation.css'
 
 const navigation = [
+  { label: 'Home', path: '/home' },
   { label: 'Dates', path: '/calendar' },
   { label: "Jaysha's Dictionary", path: '/dictionary' },
-  { label: 'Ek tha majnu', path: '/romeo' },
+  { label: 'Ek tha Romeo', path: '/romeo' },
   { label: 'Impressions', path: '/impressions' },
+  { label: 'Magic Buttons', path: '/magic-buttons' },
 ]
 
 export function HamburgerMenu() {

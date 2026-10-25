@@ -57,7 +57,7 @@ export function BeyondSection() {
 }
 
 const specialAbilities = [
-  'Overthinking a situation that hasn?t happened yet',
+  "Overthinking a situation that hasn't happened yet",
   'Detecting a change in tone through a single emoji',
   'Telepathically knowing when his boyfriend reaches home',
   'Caring a little too much',
@@ -69,10 +69,10 @@ const specialAbilities = [
 const threats = [
   'Never leave her on seen and then upload an Instagram story.',
   'Never try to win an argument using logic',
-  'Never assume ?Do whatever you want? is permission to do whatever you want.',
+  'Never assume "Do whatever you want" is permission to do whatever you want.',
   'Never respond to a serious message with a laughing emoji.',
   'Never make her feel silly for being emotional',
-  'Don?t you dare make jokes about her dog',
+  "Don't you dare make jokes about her dog",
   'Never leave her alone in a public space',
   'Never miss even a single reel she sent unreacted',
 ]

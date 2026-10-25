@@ -9,7 +9,7 @@ export const romeoChapters: RomeoChapter[] = [
  'Now when I look back, I was either ridiculously optimistic or just a little too filmy. Probably both. Obviously I copied a few lines from here and there 😌',
  ], media: [{ id: 'chapter2' }] },
  { title: 'The comeback', year: '2021', date: 'April 12, 2021', paragraphs: [
- 'So, after writing an entire poem about a girl I barely knew, we finally started talking. For 15 whole days. Impressive, I know.',
+ 'So, after writing an entire poem about a girl I barely knew, we finally started talking. For 15 whole days. Impressive, I know. Then we stopped talking. \uD83D\uDE02',
  'Almost a year later, on April 12, 2021, she decided to make a comeback with a groundbreaking opening line : HEY',
  'And somehow, that one word changed everything.',
  ], media: [{ id: 'chapter3' }] },
@@ -20,7 +20,7 @@ export const romeoChapters: RomeoChapter[] = [
  'Because now, that stranger finally had a name.',
  ], media: [{ id: 'chapter4' }] },
  { title: 'Mission successful', year: '2021', date: 'July 3, 2021', paragraphs: [
- 'I had been writing about being hers for quite some time. On July 3, 2021, I finally got to say it for real. “Mai tera, Mai tera”',
+ 'I had been constantly writing about being hers for quite some time. On July 3, 2021, I finally got to say it for real. “Mai tera, Mai tera”',
  ], media: [{ id: 'chapter5' }] },
  { title: 'The director’s cut', year: '2022–24', date: 'All the ordinary days in between', paragraphs: [
  'And just like that, the years started flying by. Somewhere between endless laughter, silly arguments and countless memories, I kept finding new reasons to fall for her.',
@@ -36,9 +36,9 @@ export const romeoChapters: RomeoChapter[] = [
  'Lyrics by: Me.\nComposed by : Me.\nVocals by : Me.\nPerformed by : Me.\nInspired by : Her',
  ], media: [{ id: 'chapter7' }] },
  { title: 'To be continued..', year: '2026', date: 'And all the years still waiting for us', paragraphs: [], media: [], poem: [
- 'I used to look for perfect words,\nto make a stranger smile;\nnow I just want your hand in mine,\nand one more little while.',
+ 'I used to look for perfect words,\nto make a stranger smile\nnow I just want your hand in mine,\nand one more little while.',
  'One more drive with nowhere planned,\none more “don’t go yet,”\none more ordinary evening\nthat we’ll never quite forget.',
- 'Let the poems lose their rhythm,\nlet my singing miss a note;\nyou’ll still be every reason\nbehind every word I wrote.',
- 'And if you ask what happens next,\nI haven’t got a clue—\njust leave a little room for me,\non every page with you.',
+ 'Let the poems lose their rhythm,\nlet my singing miss a note\nyou’ll still be every reason\nbehind every word I wrote.',
+ 'And if you ask what happens next,\nI haven’t got a clue\njust leave a little room for me,\non every page with you.',
  ] },
 ]
