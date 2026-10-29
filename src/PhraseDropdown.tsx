@@ -8,15 +8,16 @@ export function PhraseDropdown({ value, onChange }: { value: string; onChange: (
   const [active, setActive] = useState(0)
   const wrapper = useRef<HTMLDivElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)
+  const focusSearch = useRef(false)
   const input = useRef<HTMLInputElement>(null)
   const list = useRef<HTMLDivElement>(null)
   const filtered = entries.filter(entry => entry.term.toLowerCase().includes(query.trim().toLowerCase()))
-  function show() { setQuery(''); setActive(Math.max(0, entries.findIndex(entry => entry.term === value))); setOpen(true) }
+  function show(keyboard = false) { focusSearch.current = keyboard; setQuery(''); setActive(Math.max(0, entries.findIndex(entry => entry.term === value))); setOpen(true) }
   function close(restore = false) { setOpen(false); if (restore) trigger.current?.focus() }
   function choose(term: string) { onChange(term); close(true) }
   useEffect(() => {
     if (!open) return
-    input.current?.focus({ preventScroll: true })
+    if (focusSearch.current) input.current?.focus({ preventScroll: true })
     const outside = (event: PointerEvent) => { if (!wrapper.current?.contains(event.target as Node)) setOpen(false) }
     document.addEventListener('pointerdown', outside)
     return () => document.removeEventListener('pointerdown', outside)
@@ -25,7 +26,7 @@ export function PhraseDropdown({ value, onChange }: { value: string; onChange: (
     if (open) list.current?.querySelector<HTMLElement>(`[data-index="${active}"]`)?.scrollIntoView({ block: 'nearest' })
   }, [open, active])
   return <div ref={wrapper} className={`phrase-dropdown ${open ? 'is-open' : ''}`} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false) }}>
-    <button ref={trigger} type="button" className="phrase-dropdown-trigger" aria-haspopup="listbox" aria-expanded={open} aria-controls="translator-phrase-options" aria-label={`Choose a Jaysha phrase${value ? `: ${value}` : ''}`} onClick={() => open ? close() : show()} onKeyDown={event => { if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); show() } }}><span>{value || 'Choose a Jaysha phrase'}</span><ChevronDown size={18} /></button>
+    <button ref={trigger} type="button" className="phrase-dropdown-trigger" aria-haspopup="listbox" aria-expanded={open} aria-controls="translator-phrase-options" aria-label={`Choose a Jaysha phrase${value ? `: ${value}` : ''}`} onClick={() => open ? close() : show()} onKeyDown={event => { if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); show(true) } }}><span>{value || 'Choose a Jaysha phrase'}</span><ChevronDown size={18} /></button>
     {open && <div className="phrase-dropdown-menu"><label className="phrase-dropdown-search"><Search size={16} /><span className="sr-only">Search saved phrases</span><input ref={input} role="combobox" aria-expanded="true" aria-controls="translator-phrase-options" aria-autocomplete="list" aria-activedescendant={filtered[active] ? `phrase-option-${entries.indexOf(filtered[active])}` : undefined} placeholder="Find her words…" value={query} onChange={event => { setQuery(event.target.value); setActive(0) }} onKeyDown={event => {
       if (event.key === 'Escape') { event.preventDefault(); close(true) }
       if (event.key === 'ArrowDown') { event.preventDefault(); setActive(index => Math.min(index + 1, filtered.length - 1)) }

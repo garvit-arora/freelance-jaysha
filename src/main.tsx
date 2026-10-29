@@ -30,17 +30,7 @@ function Intro() {
   const navigate = useNavigate()
   const navigateTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   useEffect(() => () => clearTimeout(navigateTimer.current), [])
-  useEffect(() => {
-    let started = false
-    const startSong = (event: MouseEvent) => {
-      if (started) return
-      started = true
-      if ((event.target as Element)?.closest?.('.site-music')) return
-      window.dispatchEvent(new Event('archive-play-compilation-song'))
-    }
-    document.addEventListener('click', startSong)
-    return () => document.removeEventListener('click', startSong)
-  }, [])
+
 
 
   return (
@@ -78,7 +68,7 @@ function App() {
   const location = useLocation()
   const exploring = location.pathname === '/home' || (location.pathname === '/' && location.hash === '#explore')
   useLayoutEffect(() => {
-    if (['/impressions', '/romeo', '/story', '/dates'].includes(location.pathname)) return
+    if (['/impressions', '/romeo', '/story', '/dates', '/calendar', '/dictionary'].includes(location.pathname)) return
     const motion = gsap.matchMedia()
     motion.add('(prefers-reduced-motion: no-preference)', () => {
       // The smoother must exist before any pinned ScrollTriggers.
@@ -92,7 +82,7 @@ function App() {
       if (exploring) {
         smoother.scrollTo(0, false)
       }
-      return () => smoother.kill()
+      return () => { smoother.kill(); ScrollTrigger.normalizeScroll(false) }
     })
     return () => motion.revert()
   }, [location.pathname, exploring])

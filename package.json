@@ -14,7 +14,8 @@
     "test:cloud": "node scripts/test-cloud.mjs",
     "test:impressions": "node scripts/test-impressions.mjs",
     "chapters:upload": "node scripts/upload-chapters.mjs",
-    "songs:download": "python scripts/download-shorts.py"
+    "songs:download": "python scripts/download-shorts.py",
+    "songs:download:additional": "python scripts/download-shorts.py --source src/additional-song-dedications.json --manifest src/additional-song-audio.json --include-clips"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.3.5",

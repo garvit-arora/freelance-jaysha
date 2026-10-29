@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Heart, Music2, Sparkles, X } from 'lucide-react'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import { dedicationCount } from './MusicButton'
 import { PageHeader } from './Calendar'
 import messages from './reassurance-messages.json'
 import { shuffleDeck } from '../shared/shuffle-deck.mjs'
@@ -54,7 +55,7 @@ export function MagicButtonsPage() {
         <p>Since “Which song would you dedicate to me?” has somehow become one of your most frequently asked questions, I’ve decided to make a permanent solution.</p>
         <p>So here you go. An entire collection of song lyrics that make me think of you. Next time you feel like asking me that question for the 847th time, you know where to come.</p>
         <p>Click once, get a dedication. Click again, get another. Keep clicking until you’re satisfied, although history suggests that might never happen.</p>
-        <button className="magic-action" onClick={dedicate}><Music2 size={18} /> Dedicate a song</button><small>26 song moments. Click to play another in the background.</small>
+        <button className="magic-action" onClick={dedicate}><Music2 size={18} /> Dedicate a song</button><small>{dedicationCount} song moments. Click to play another in the background.</small>
       </section>
     </div>
     <dialog ref={dialog} className="magic-dialog" aria-labelledby="magic-message-title" onCancel={() => setKind(null)} onClose={() => setKind(null)} onClick={event => { if (event.target === event.currentTarget) setKind(null) }}>

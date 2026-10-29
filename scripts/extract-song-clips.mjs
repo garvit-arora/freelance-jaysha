@@ -9,7 +9,8 @@ const existing = JSON.parse(await readFile('src/song-clips.json', 'utf8').catch(
 const clips = []
 await mkdir('public/song-clips', { recursive: true })
 for (let index = 0; index < boundaries.length; index++) {
-  const start = boundaries[index], end = boundaries[index + 1]
+  // Skip the first two seconds of every segment, without shifting its end.
+  const start = boundaries[index] + 2, end = boundaries[index + 1]
   const path = `public/song-clips/song-${index + 1}.m4a`
   const args = ['-hide_banner','-loglevel','error','-y','-ss',String(start),'-i',source]
   if (end) args.push('-t',String(end - start))

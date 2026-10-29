@@ -40,7 +40,7 @@ export default function DatesMap({ embedded = false }: { embedded?: boolean }) {
   }, [])
   useEffect(() => {
     if (!mount.current) return
-    const instance = L.map(mount.current, { zoomControl: false, minZoom: 3, maxZoom: 19, attributionControl: true, scrollWheelZoom: !embedded })
+    const instance = L.map(mount.current, { zoomControl: false, minZoom: 3, maxZoom: 19, attributionControl: true, scrollWheelZoom: true, touchZoom: true, dragging: true, doubleClickZoom: true, bounceAtZoomLimits: false })
     map.current = instance
     instance.fitBounds(delhiBounds, { padding: [35, 35] })
     const tiles = L.tileLayer(import.meta.env.VITE_MAP_TILE_URL || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

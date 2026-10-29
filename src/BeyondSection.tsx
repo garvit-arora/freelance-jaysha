@@ -15,7 +15,7 @@ const weaknesses = [
   'Guggu and guggi reels',
   'Gol gappe',
   'Animal lover until animals are used in steamed momos',
-  'Random compliments from his boyfriend',
+  'Random compliments from her boyfriend',
   'Addicted to reassurance : Needs confirmation, receives confirmation, questions the confirmation.',
   'Cannot walk past a dog without saying “Awww, baby!”',
 ]
@@ -59,7 +59,7 @@ export function BeyondSection() {
 const specialAbilities = [
   "Overthinking a situation that hasn't happened yet",
   'Detecting a change in tone through a single emoji',
-  'Telepathically knowing when his boyfriend reaches home',
+  'Telepathically knowing when her boyfriend reaches home',
   'Caring a little too much',
   'Making nona baby face every time she is sad',
   'Remembering the tiniest details about the people she loves',

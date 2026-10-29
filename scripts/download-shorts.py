@@ -18,22 +18,26 @@ import yt_dlp
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--limit', type=int)
+parser.add_argument('--source', default='src/song-dedications.json')
+parser.add_argument('--manifest', default='src/shorts-audio.json')
+parser.add_argument('--include-clips', action='store_true')
 parser.add_argument('--workers', type=int, default=4)
 args = parser.parse_args()
 ffmpeg = os.environ.get('FFMPEG_PATH', str(ROOT / '.tools/python/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe'))
-songs = [song for song in json.loads((ROOT / 'src/song-dedications.json').read_text()) if song['short']]
+songs = [song for song in json.loads((ROOT / args.source).read_text()) if song['short'] or args.include_clips]
 if args.limit:
     songs = songs[:args.limit]
 output = ROOT / 'public/shorts-audio'
 output.mkdir(parents=True, exist_ok=True)
 cache = ROOT / '.tools/shorts-downloads'
 cache.mkdir(parents=True, exist_ok=True)
-manifest_path = ROOT / 'src/shorts-audio.json'
+manifest_path = ROOT / args.manifest
 manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else []
 failed = []
 def download(song):
     video_id = song['id']
-    destination = output / f'{video_id}.mp3'
+    file_id = video_id if song.get('short') else f"{video_id}-{song.get('start',0)}-{song.get('end','end')}"
+    destination = output / f'{file_id}.mp3'
     try:
         if not destination.exists() or destination.stat().st_size == 0:
             options = {'format': 'bestaudio/best', 'outtmpl': str(cache / '%(id)s.%(ext)s'),
@@ -43,10 +47,14 @@ def download(song):
                 info = downloader.extract_info(f'https://www.youtube.com/shorts/{video_id}', download=True)
                 source = downloader.prepare_filename(info)
             temporary = destination.with_suffix('.partial.mp3')
-            subprocess.run([ffmpeg, '-hide_banner', '-loglevel', 'error', '-y', '-i', source,
-                            '-vn', '-c:a', 'libmp3lame', '-b:a', '160k', str(temporary)], check=True)
+            command = [ffmpeg, '-hide_banner', '-loglevel', 'error', '-y']
+            if song.get('start'): command += ['-ss', str(song['start'])]
+            command += ['-i', source]
+            if song.get('end'): command += ['-t', str(song['end'] - song.get('start', 0))]
+            command += ['-vn', '-c:a', 'libmp3lame', '-b:a', '160k', str(temporary)]
+            subprocess.run(command, check=True)
             temporary.replace(destination)
-        entry = {'id': video_id, 'url': f'/shorts-audio/{video_id}.mp3'}
+        entry = {'id': video_id, 'url': f'/shorts-audio/{file_id}.mp3'}
         return entry
     except Exception as error:
         print(f'Unavailable: {video_id}: {error}', flush=True)
