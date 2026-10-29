@@ -25,7 +25,14 @@ export function DictionaryPage() {
     return () => window.clearTimeout(timer)
   }, [selected])
   return <main className="world-page translator-page"><PageHeader title="Dictionary" />
-    <div className="translator-heading"><span>Disclaimer: Even after five years, the translator is not always accurate.</span><h1>Jaysha-to-English translator</h1><p>What you say. What you really mean.</p></div>
+    <div className="translator-heading"><h1>Jaysha-to-English translator</h1><div className="translator-introduction">
+      <p>Because understanding Jaysha is an art. And apparently, I’ve been studying for five years.</p>
+      <p>She says one thing. Means another. And somehow, you’re supposed to know the difference.</p>
+      <p>This is an attempt to decode the language, interpret the silences and translate the things that were never meant to be taken literally.</p>
+      <p>This document contains a collection of commonly used phrases, their hidden meanings, and recommended responses.</p>
+      <p>So, for the benefit of humanity (and mostly myself), I’ve decided to document a few of these mysteries.</p>
+      <p className="translator-introduction-disclaimer">Disclaimer: Even after five years, the translator is not always accurate.</p>
+    </div></div>
     <section className="translator-workspace" aria-label="Jaysha-to-English phrase translator">
       <div className="translator-source"><PhraseDropdown value={selected} onChange={setSelected} /><div className={`translator-text ${selected ? '' : 'is-placeholder'}`}>{selected || 'Select a phrase to translate'}</div></div>
       <div className="translator-direction" aria-hidden="true"><ArrowRightLeft size={23} /></div>
