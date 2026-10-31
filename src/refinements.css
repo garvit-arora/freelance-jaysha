@@ -28,3 +28,9 @@
 .site-youtube-player audio{display:block;width:100%;color-scheme:dark;margin:15px 0;border-radius:28px}
 
 .street-map-canvas.leaflet-container{touch-action:none;overscroll-behavior:contain}
+
+.explore-photo-copy .hero-welcome-line{color:#b58e80;font-size:clamp(16px,2.4vw,30px);letter-spacing:.06em;line-height:1.6}.explore-photo-copy h1{color:#fff}.dates-section-intro{max-width:900px;font-size:15px;color:#aaa295;line-height:1.9}.dates-section-intro p{margin:0 0 16px}.calendar-section-intro{margin:30px auto 10px;padding:0 24px;max-width:900px}.faq-section{max-width:1150px;margin:0 auto;padding:80px 24px 110px}.faq-section h2{font-size:clamp(40px,6vw,72px);margin-bottom:35px;color:#fff}.faq-section details{border-bottom:1px solid #ffffff28;padding:21px 0}.faq-section summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-size:clamp(18px,2vw,25px);line-height:1.5;color:#eee8df}.faq-section summary::after{content:'+';color:#b58e80;font-size:25px}.faq-section details[open] summary::after{content:'\2212'}.faq-section details p{color:#bbb3a6;line-height:1.9;font-size:17px;margin:18px 0 5px;max-width:900px}.faq-section summary:focus-visible{outline:2px solid #b58e80;outline-offset:6px}.impressions-bubble p{white-space:pre-wrap}
+
+.explore-photo-copy .hero-welcome-subtext{font-size:clamp(14px,1.5vw,18px);line-height:1.7;color:#ddd4c7;margin:20px auto 0}
+
+.calendar-section-intro{text-align:center}

@@ -11,6 +11,7 @@ import { BeyondSection, SpecialAbilitiesSection, ThreatsSection } from './Beyond
 import { HamburgerMenu } from './HamburgerMenu'
 import { ContactButton } from './ContactButton'
 import { AboutHer } from './AboutHer'
+import { FaqSection } from './FaqSection'
 import { MagicButtonsPage } from './MagicButtons'
 import { MusicButton } from './MusicButton'
 import './refinements.css'
@@ -117,13 +118,14 @@ function Hero() {
     <section aria-label="Our world, a little closer" className="explore-photo-hero">
       <img src="/bg-post-timeline.jpeg" alt="Jaysha" className="explore-photo-image" fetchPriority="high" />
       <div className="explore-photo-shade" aria-hidden="true" />
-      <div className="explore-photo-copy"><span>Our world, a little closer</span><h1>Every little thing, you.</h1><p>Of all the things I want to give you in this life, I hope making you feel loved is the one I never stop doing</p></div>
+      <div className="explore-photo-copy"><span className="hero-welcome-line">LADIES AND GENTEMAN, WELCOME TO</span><h1>THE WORLD OF JAYSHA SINGYAN.</h1><p className="hero-welcome-subtext">&quot;There's a lot more to her than meets the eye&quot;</p></div>
       <span className="explore-photo-hint">Scroll to explore &#8595;</span>
     </section>
     <AboutHer />
     <SpecialAbilitiesSection />
     <BeyondSection />
     <ThreatsSection />
+    <FaqSection />
 
 
 

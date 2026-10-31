@@ -18,9 +18,9 @@ function StoryMedia({ id, active, caption, title }: { id: string; active: boolea
   useEffect(() => { video.current?.load() }, [])
   if (!asset) return <p className="romeo-media-error">This memory is not available yet.</p>
   return <figure className={`romeo-media ${asset.kind === 'image' ? 'is-image' : ''}`}>
+    {caption && <figcaption>{caption}</figcaption>}
     {asset.kind === 'video' ? <video ref={video} src={originalVideoUrl(asset.url)} poster={assets[`${id}Poster`]?.url} preload="auto" controls={active} playsInline aria-label={caption || title} onError={() => setFailed(true)} /> : <a href={asset.url} target="_blank" rel="noreferrer" aria-label={`View full image: ${title}`}><img src={asset.url} alt={title} decoding="async" /></a>}
     {failed && <div className="romeo-media-error" role="alert">Couldn’t load this video. <button onClick={() => { setFailed(false); video.current?.load() }}><RotateCcw size={14} /> Retry</button></div>}
-    {caption && <figcaption>{caption}</figcaption>}
   </figure>
 }
 export function RomeoPage() {
@@ -45,7 +45,7 @@ export function RomeoPage() {
   }, [chapter])
   const current = romeoChapters[chapter]
   return <main className="romeo-page"><header className="romeo-page-header"><Link to="/home"><ArrowLeft size={17} /> Our world</Link><span>A VERY UNOFFICIAL LOVE STORY</span><Heart size={17} /></header>
-    <div className="romeo-introduction"><span>FROM A COMPLIMENT TO A WHOLE LIFE</span><h1>Ek tha majnu<span>.</span></h1><h2>One girl. Eight chapters. One hopeless romantic</h2><p>Once upon a time, there was a perfectly normal boy. Then he came across a girl with a pretty smile, and things went slightly downhill from there.</p></div>
+    <div className="romeo-introduction"><span>FROM A COMPLIMENT TO A WHOLE LIFE</span><h1>Ek tha Romeo</h1><h2>One girl. Eight chapters. One hopeless romantic</h2><p>Once upon a time, there was a perfectly normal boy. Then he came across a girl with a pretty smile, and things went slightly downhill from there.</p></div>
     <section className="romeo-book" aria-label="Eight chapters of our story">
       <nav className="romeo-years" aria-label="Story years">{years.map(year => {
         const first = romeoChapters.findIndex(item => item.year === year)

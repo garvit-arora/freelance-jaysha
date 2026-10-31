@@ -40,12 +40,9 @@ Pins use published or user-supplied coordinates without visual offsets. Supplied
 - wembley estate: 28.41394, 77.05649 / Estate club anchor; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=28.41394,77.05649)
 - manesar: 28.36173, 76.94022 / City reference point; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=28.36173,76.94022)
 
-## Park Plaza branch choice
+## Merged venue aliases
 
-The unspecified visit remains unpinned. Its memory card offers both branches for its memory popup:
-
-- Park Plaza, Gurugram: 28.4595, 77.07574 / Hotel; branch assumed (user-provided).
-- Park Plaza, Shahdara: 28.65868, 77.29802 / Hotel; alternative (user-provided).
+Ramprastha Vaishali and Ramprastha share one pin. Park Plaza and Park Plaza Shahdara also share one Shahdara pin, following the request to remove the duplicate. Every dated visit and caption is retained in the pin popup. Separate venues in the same area remain separate.
 
 ## Still unresolved
 

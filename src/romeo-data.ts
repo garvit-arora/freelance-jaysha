@@ -36,7 +36,7 @@ export const romeoChapters: RomeoChapter[] = [
  'Lyrics by: Me.\nComposed by : Me.\nVocals by : Me.\nPerformed by : Me.\nInspired by : Her',
  ], media: [{ id: 'chapter7' }] },
  { title: 'To be continued..', year: '2026', date: 'And all the years still waiting for us', paragraphs: [], media: [], poem: [
- 'I used to look for perfect words,\nto make a stranger smile\nnow I just want your hand in mine,\nand one more little while.',
+ 'I used to look for perfect words,\nto make a stranger smile.\nnow I just want to hold her hand\nFor a little longer, a little more while.',
  'One more drive with nowhere planned,\none more “don’t go yet,”\none more ordinary evening\nthat we’ll never quite forget.',
  'Let the poems lose their rhythm,\nlet my singing miss a note\nyou’ll still be every reason\nbehind every word I wrote.',
  'And if you ask what happens next,\nI haven’t got a clue\njust leave a little room for me,\non every page with you.',
