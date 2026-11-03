@@ -14,9 +14,10 @@ test('venue coordinates have provenance and are bound to actual named memories',
  }
  assert.equal(coordinates['rohini sector 18 metro station'].longitude, 77.13985)
  assert.notEqual(coordinates['boho bistro vaishali'].longitude, coordinates['sector 4 vaishali lenskart.com'].longitude)
- assert.equal(coordinates.radisson, undefined)
+ assert.equal(coordinates.radisson.latitude, 28.415805)
  assert.equal(coordinates.manali.latitude, 32.2455)
- assert.equal(coordinates.nmacc.longitude, 72.86709)
+ assert.equal(coordinates.nmacc, undefined)
+ assert.equal(coordinates['shri ram centre for performing arts, mandi house'].longitude, 77.23298)
  assert.equal(coordinates['park plaza'], undefined)
  assert.equal(coordinates['nsp tasteland'].precision, 'NSP neighbourhood only')
 })

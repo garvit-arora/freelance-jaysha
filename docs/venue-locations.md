@@ -36,7 +36,6 @@ Pins use published or user-supplied coordinates without visual offsets. Supplied
 - nsp tasteland: 28.69245, 77.15011 / NSP neighbourhood only; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=28.69245,77.15011)
 - jim corbett: 29.5586, 78.8794 / Park reference point; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=29.5586,78.8794)
 - manali: 32.2455, 77.1873 / Town reference point; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=32.2455,77.1873)
-- nmacc: 19.06528, 72.86709 / Cultural centre building; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=19.06528,72.86709)
 - wembley estate: 28.41394, 77.05649 / Estate club anchor; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=28.41394,77.05649)
 - manesar: 28.36173, 76.94022 / City reference point; user-provided map reference: [link](https://www.google.com/maps/search/?api=1&query=28.36173,76.94022)
 
@@ -46,23 +45,8 @@ Ramprastha Vaishali and Ramprastha share one pin. Park Plaza and Park Plaza Shah
 
 ## Still unresolved
 
-- chawla restaurant
-- cp inox
 - department of political science
-- gallivanto in rohini
-- hari om chole bhature
-- haveli murthal
-- madras cafe shalimar
-- opulence
-- pind balucchi
-- presidium school
-- punjab grill
-- pvr icon
-- radisson
-- sector 4 vaishali
-- stellar inn
 - vada pav ghaziabad
-- vikaspuri pizza
 
 ## Added venue pins (3 November 2026)
 
@@ -78,3 +62,31 @@ Ramprastha Vaishali and Ramprastha share one pin. Park Plaza and Park Plaza Shah
 - Wonder Carnival: replaced the earlier general Leisure Valley Ground anchor with **28.468711, 77.0617**, the published carnival listing at the user-specified **SCO 25, Sector 29** address. The source lists the place as Gurugram Summer Carnival. [Source](https://wanderlog.com/place/details/17656340/gurugram-summer-carnival).
 - Forestta remains at **28.4392663, 77.1039979**, Plot 27, Saraswati Kunj, Golf Course Road, Sector 54.
 - Qureshi Kabab Corner remains at **28.4372459, 77.10443426**, Shop 9, La Mart Market, Golf Course Road, Sector 54.
+
+## Additional venue pins and identity correction (3 November 2026)
+
+NMACC was incorrectly identified as Mumbai. The 5 June 2026 memory is Shri Ram Centre for Performing Arts, Mandi House; its caption and date are unchanged.
+
+- INOX Odeon, Connaught Place: 28.63392, 77.22093. Published cinema point; Odeon Cinema Complex, D Block, Connaught Place. [Source](https://locatecinemas.com/cinemas/india/new-delhi/inox-odeon-connaught-place-17b75bbf/)
+- PVR ICON, DLF Promenade, Vasant Kunj: 28.541898423957434, 77.15563599381304. Official mall coordinates; cinema on second floor. [Source](https://www.dlfpromenade.com/entertainment)
+- Stellar Inn, Sector 6, Rohini: 28.709016369, 77.109367906. Hotel listing GeoCoordinates; CSC-1 DDA Market, Shukra Bazar Road. [Source](https://www.brevistay.com/full-day-stays/stellar-inn-in-delhi-3181)
+- Sector 4, Vaishali: 28.6439972, 77.339436. Sector 4 market reference point; exact stop unspecified. [Source](https://www.latlong.net/poi/vaishali-sector-4-market-523498)
+- Punjab Grill, Ambience Mall, Gurugram: 28.503082, 77.0974904. Published restaurant directions point; level 3, Ambience Mall. [Source](https://magicpin.in/Gurgaon/Ambience-Mall/Restaurant/Punjab-Grill-Ambience-Mall/store/1861448/)
+- Gallivanto Inn, Sector 18, Rohini: 28.740815, 77.13302. Same-building anchor: H-3/27, above IDFC First Bank; Fitpass lists basement gym at that address. [Source](https://fitpass.co.in/studio/strength-heaven-gym-and-crossfit-sector-18-rohini)
+- Haveli, Murthal: 29.0684064, 77.0579511. Official venue GeoCoordinates; Haveli, not Mannat Haveli. [Source](https://www.haveli.co/murthal/)
+- Pind Balluchi, Metro Walk, Rohini: 28.72397, 77.11385. Published restaurant coordinates; FA-9/10/11 Unitech Metro Walk. [Source](https://ru.aroundus.com/p/171644657-pind-balluchi)
+- Chawla's Tandoori Junction, Karkardooma: 28.64798, 77.303029. Published restaurant directions point; Pankaj Plaza, Karkardooma. [Source](https://magicpin.in/New-Delhi/Dayanand-Vihar/Restaurant/Chawlas-Tandoori-Junction/store/2258/)
+- The Opulence Hotel, Paschim Vihar: 28.680554376, 77.091676394. Hotel listing GeoCoordinates; D-4 Peeragarhi, Udyog Nagar. [Source](https://www.brevistay.com/hotels/hotel-the-opulence-new-delhi%2C-paschim-vihar-in-delhi-12986)
+- Shri Ram Centre for Performing Arts, Mandi House: 28.62705, 77.23298. Mapped arts-centre building; replaces incorrect NMACC Mumbai identity per user. [Source](https://mapcarta.com/W582090036)
+
+Jim Corbett remains at the user-supplied park reference point (29.5586, 78.8794), outside the initial Delhi view. Use All places or search/select it to navigate there.
+
+## User-approved branch choices
+
+The user permitted any branch for Presidium, Radisson, and Hari Om and confirmed the proposed Circle of Crust and Madras identities. These are chosen branches, not independently proven historical visit locations.
+
+- Hari Om Chole Bhature, Prashant Vihar: 28.70961589, 77.13467382. Published restaurant point; Prashant Vihar branch selected with user permission. [Source](https://magicpin.in/New-Delhi/Prashant-Vihar/Restaurant/Hari-Om-Chole-Bhature/store/278c5/)
+- Radisson Gurugram Sohna Road City Center: 28.415805, 77.041776. Published hotel coordinates; Sohna Road branch selected with user permission. [Source](https://www.travelmyth.co.uk/Gurgaon/Hotels/Radisson-Gurugram-Sohna-Road-City-Center_tmid63015)
+- Presidium School, Rohini Sector 5: 28.7128642, 77.1040305. Published school point; Rohini Sector 5 branch selected with user permission. [Source](https://magicpin.in/New-Delhi/Sector-5/Education/Presidium-Rohini-Sector-5-%7C-Best-School-In-Rohini/store/1b59a0c/)
+- Circle of Crust, Uttam Nagar: 28.6221224, 77.0582328. Published restaurant coordinates; D-28/29 Najafgarh Road. User confirmed this branch despite the original Vikaspuri label and 2024 date.. [Source](https://www.zomato.com/ncr/circle-of-crust-uttam-nagar-new-delhi)
+- Madras Dosa & Chinese, Shalimar Bagh: 28.706629, 77.162795. Published restaurant point; BN Market identity confirmed by user. [Source](https://magicpin.in/New-Delhi/Shalimar-Bagh/Restaurant/Madras-Dosa-And-Chinese/store/3924/)

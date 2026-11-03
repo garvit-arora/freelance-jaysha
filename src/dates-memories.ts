@@ -414,7 +414,7 @@ export const dateMemories: DateMemory[] = [
   {
     "id": "memory-56",
     "date": "05-06-2026",
-    "place": "NMACC",
+    "place": "Shri Ram Centre for Performing Arts, Mandi House",
     "note": "“Abhi na jao chhod ke, ke dil abhi bhara nahi”",
     "location": "delhi"
   },

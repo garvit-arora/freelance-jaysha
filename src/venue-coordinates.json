@@ -308,15 +308,6 @@
     "precision": "Town reference point",
     "provenance": "user-provided"
   },
-  "nmacc": {
-    "name": "nmacc",
-    "latitude": 19.06528,
-    "longitude": 72.86709,
-    "source": "https://www.google.com/maps/search/?api=1&query=19.06528,72.86709",
-    "verifiedAt": "2026-10-24",
-    "precision": "Cultural centre building",
-    "provenance": "user-provided"
-  },
   "wembley estate": {
     "name": "wembley estate",
     "latitude": 28.41394,
@@ -379,5 +370,135 @@
     "source": "https://magicpin.in/New-Delhi/Hudson-Lane/Restaurant/Cafeteria-and-Co./store/282ab/",
     "verifiedAt": "2026-11-03",
     "precision": "Published restaurant directions point; G-14, Hudson Lane, GTB Nagar"
+  },
+  "cp inox": {
+    "name": "INOX Odeon, Connaught Place",
+    "latitude": 28.63392,
+    "longitude": 77.22093,
+    "source": "https://locatecinemas.com/cinemas/india/new-delhi/inox-odeon-connaught-place-17b75bbf/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published cinema point; Odeon Cinema Complex, D Block, Connaught Place"
+  },
+  "pvr icon": {
+    "name": "PVR ICON, DLF Promenade, Vasant Kunj",
+    "latitude": 28.541898423957434,
+    "longitude": 77.15563599381304,
+    "source": "https://www.dlfpromenade.com/entertainment",
+    "verifiedAt": "2026-11-03",
+    "precision": "Official mall coordinates; cinema on second floor"
+  },
+  "stellar inn": {
+    "name": "Stellar Inn, Sector 6, Rohini",
+    "latitude": 28.709016369,
+    "longitude": 77.109367906,
+    "source": "https://www.brevistay.com/full-day-stays/stellar-inn-in-delhi-3181",
+    "verifiedAt": "2026-11-03",
+    "precision": "Hotel listing GeoCoordinates; CSC-1 DDA Market, Shukra Bazar Road"
+  },
+  "sector 4 vaishali": {
+    "name": "Sector 4, Vaishali",
+    "latitude": 28.6439972,
+    "longitude": 77.339436,
+    "source": "https://www.latlong.net/poi/vaishali-sector-4-market-523498",
+    "verifiedAt": "2026-11-03",
+    "precision": "Sector 4 market reference point; exact stop unspecified"
+  },
+  "punjab grill": {
+    "name": "Punjab Grill, Ambience Mall, Gurugram",
+    "latitude": 28.503082,
+    "longitude": 77.0974904,
+    "source": "https://magicpin.in/Gurgaon/Ambience-Mall/Restaurant/Punjab-Grill-Ambience-Mall/store/1861448/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published restaurant directions point; level 3, Ambience Mall"
+  },
+  "gallivanto in rohini": {
+    "name": "Gallivanto Inn, Sector 18, Rohini",
+    "latitude": 28.740815,
+    "longitude": 77.13302,
+    "source": "https://fitpass.co.in/studio/strength-heaven-gym-and-crossfit-sector-18-rohini",
+    "verifiedAt": "2026-11-03",
+    "precision": "Same-building anchor: H-3/27, above IDFC First Bank; Fitpass lists basement gym at that address",
+    "identitySource": "https://gallivantoinn.com/gallivantoinn/index.html"
+  },
+  "haveli murthal": {
+    "name": "Haveli, Murthal",
+    "latitude": 29.0684064,
+    "longitude": 77.0579511,
+    "source": "https://www.haveli.co/murthal/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Official venue GeoCoordinates; Haveli, not Mannat Haveli"
+  },
+  "pind balucchi": {
+    "name": "Pind Balluchi, Metro Walk, Rohini",
+    "latitude": 28.72397,
+    "longitude": 77.11385,
+    "source": "https://ru.aroundus.com/p/171644657-pind-balluchi",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published restaurant coordinates; FA-9/10/11 Unitech Metro Walk",
+    "identitySource": "https://pindballuchi.com/delhi/"
+  },
+  "chawla restaurant": {
+    "name": "Chawla's Tandoori Junction, Karkardooma",
+    "latitude": 28.64798,
+    "longitude": 77.303029,
+    "source": "https://magicpin.in/New-Delhi/Dayanand-Vihar/Restaurant/Chawlas-Tandoori-Junction/store/2258/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published restaurant directions point; Pankaj Plaza, Karkardooma"
+  },
+  "opulence": {
+    "name": "The Opulence Hotel, Paschim Vihar",
+    "latitude": 28.680554376,
+    "longitude": 77.091676394,
+    "source": "https://www.brevistay.com/hotels/hotel-the-opulence-new-delhi%2C-paschim-vihar-in-delhi-12986",
+    "verifiedAt": "2026-11-03",
+    "precision": "Hotel listing GeoCoordinates; D-4 Peeragarhi, Udyog Nagar"
+  },
+  "shri ram centre for performing arts, mandi house": {
+    "name": "Shri Ram Centre for Performing Arts, Mandi House",
+    "latitude": 28.62705,
+    "longitude": 77.23298,
+    "source": "https://mapcarta.com/W582090036",
+    "verifiedAt": "2026-11-03",
+    "precision": "Mapped arts-centre building; replaces incorrect NMACC Mumbai identity per user"
+  },
+  "hari om chole bhature": {
+    "name": "Hari Om Chole Bhature, Prashant Vihar",
+    "latitude": 28.70961589,
+    "longitude": 77.13467382,
+    "source": "https://magicpin.in/New-Delhi/Prashant-Vihar/Restaurant/Hari-Om-Chole-Bhature/store/278c5/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published restaurant point; Prashant Vihar branch selected with user permission"
+  },
+  "radisson": {
+    "name": "Radisson Gurugram Sohna Road City Center",
+    "latitude": 28.415805,
+    "longitude": 77.041776,
+    "source": "https://www.travelmyth.co.uk/Gurgaon/Hotels/Radisson-Gurugram-Sohna-Road-City-Center_tmid63015",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published hotel coordinates; Sohna Road branch selected with user permission"
+  },
+  "presidium school": {
+    "name": "Presidium School, Rohini Sector 5",
+    "latitude": 28.7128642,
+    "longitude": 77.1040305,
+    "source": "https://magicpin.in/New-Delhi/Sector-5/Education/Presidium-Rohini-Sector-5-%7C-Best-School-In-Rohini/store/1b59a0c/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published school point; Rohini Sector 5 branch selected with user permission"
+  },
+  "vikaspuri pizza": {
+    "name": "Circle of Crust, Uttam Nagar",
+    "latitude": 28.6221224,
+    "longitude": 77.0582328,
+    "source": "https://www.zomato.com/ncr/circle-of-crust-uttam-nagar-new-delhi",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published restaurant coordinates; D-28/29 Najafgarh Road. User confirmed this branch despite the original Vikaspuri label and 2024 date."
+  },
+  "madras cafe shalimar": {
+    "name": "Madras Dosa & Chinese, Shalimar Bagh",
+    "latitude": 28.706629,
+    "longitude": 77.162795,
+    "source": "https://magicpin.in/New-Delhi/Shalimar-Bagh/Restaurant/Madras-Dosa-And-Chinese/store/3924/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published restaurant point; BN Market identity confirmed by user"
   }
 }

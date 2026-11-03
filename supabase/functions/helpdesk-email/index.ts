@@ -40,7 +40,12 @@ Deno.serve(async request => {
     if (delivery.status === 'sending') return reply({ sent:false,pending:true })
     const { data:claim } = await admin.from('helpdesk_email_deliveries').update({ status:'sending',attempts:delivery.attempts + 1,updated_at:new Date().toISOString() }).eq('kind',kind).eq('submission_id',submissionId).eq('status',delivery.status).select('submission_id').maybeSingle()
     if (!claim) return reply({ sent:false,pending:true })
-    const email = helpdeskEmail(kind,row)
+    const {data:submitter,error:submitterError} = await admin.auth.admin.getUserById(row.user_id)
+    if (submitterError || !submitter?.user?.email) {
+      await admin.from('helpdesk_email_deliveries').update({status:'failed'}).eq('kind',kind).eq('submission_id',submissionId)
+      return reply({sent:false,pending:true})
+    }
+    const email = helpdeskEmail(kind,row,submitter.user.email)
     let response: Response
     try {
       response = await fetch(endpoint, { method:'POST',headers:{ 'Content-Type':'application/json',Accept:'application/json' },body:JSON.stringify({ department:kind,submission_id:submissionId,message:email.message,_email:{ subject:email.subject,from:'Girlfriend Helpdesk',template:{ title:false,footer:false } } }),signal:AbortSignal.timeout(20000) })
