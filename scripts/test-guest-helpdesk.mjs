@@ -12,6 +12,12 @@ try {
     ['request','helpdesk_requests',{category:'Quality Time',description:'Temporary guest submission verification',urgency:'Whenever you’re free'}],
     ['date-booking','helpdesk_date_bookings',{preferred_date:'2099-01-01',experience:'Café Date',details:'Temporary guest submission verification'}],
   ]
+  for (const [kind] of cases) {
+    const denied = await client.functions.invoke('helpdesk-submit',{body:{kind}})
+    assert.ok(denied.error,'Guests must not submit')
+  }
+  const {error:loginError} = await client.auth.signInWithPassword({email:process.env.LOGIN_EMAIL,password:process.env.LOGIN_PASSWORD})
+  assert.ifError(loginError)
   for (const [kind,table,values] of cases) {
     const id = randomUUID(),receipt = randomUUID()+randomUUID()
     records.push({table,id})
@@ -22,8 +28,9 @@ try {
     const retry = await client.functions.invoke('helpdesk-submit',{body})
     assert.ifError(retry.error)
     assert.equal(retry.data.id,id)
-    console.log('PASS guest submission and safe retry:',kind)
+    console.log('PASS signed-in submission and safe retry:',kind)
   }
+  await client.auth.signOut({scope:'local'})
   const read = await client.from('helpdesk_complaints').select('id')
   assert.ok(read.error,'Guest database reads must remain blocked')
   const badReceipt = await client.functions.invoke('helpdesk-email',{body:{kind:'complaint',submissionId:records[0].id,receipt:randomUUID()+randomUUID()}})

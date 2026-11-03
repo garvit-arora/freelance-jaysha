@@ -5,7 +5,7 @@ A static React/Vite website with Supabase Auth and Postgres, plus a Supabase Edg
 ## Configure once
 
 1. Fill `.env` using `.env.example`. The Supabase public URL and publishable key are the only browser settings. Never put the login password, service-role key, ImageKit private key, or access token in a `VITE_` variable.
-2. Add `LOGIN_EMAIL` and `LOGIN_PASSWORD` (meeting your Supabase password policy). Run `npm run account:setup` once to create the login account from those values. Later `.env` edits do not silently change the account password; use Supabase Auth to reset it.
+2. Add `LOGIN_EMAIL` and `LOGIN_PASSWORD` (meeting your Supabase password policy). For additional accounts, add comma-separated emails to `LOGIN_EMAILS`. Run `npm run account:setup` to create missing accounts and set every listed account to the same password. Rerun this command after changing the email list or shared password. It sends no invitation or confirmation emails. Keep public signups disabled in Supabase Auth.
 3. In Supabase Authentication settings, disable **Allow new users to sign up**. Only invited or administratively created users should access this private archive.
 4. Add ImageKit public/private keys and a Supabase personal access token from https://supabase.com/dashboard/account/tokens. Run `npm run cloud:deploy`. This applies the database schema and deploys the `media` Edge Function. It can be rerun safely.
 5. Run `npm run dev`. Open http://localhost:5173/login. Existing sessions sign in automatically; use the gallery's sign-out button to end a session.

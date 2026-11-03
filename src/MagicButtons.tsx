@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Music2, X } from 'lucide-react'
+import { Music2, Sparkles, X } from 'lucide-react'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { PageHeader } from './Calendar'
 import messages from './reassurance-messages.json'
@@ -48,7 +48,7 @@ export function MagicButtonsPage() {
         <p>Since your need for reassurance is a full time job and you ask for it 47 times in a day, I’ve decided to automate it.</p>
         <p>Hundreds of reassurances, personally written by your already overworked boyfriend, covering every possible crisis your beautiful little brain could manufacture.</p>
         <p>Click as many times as you want whenever your brain decides to become your biggest enemy. Unlike me, this button never gets tired.</p>
-        <button className="magic-action" onClick={reassure}>Reassure me</button>
+        <button className="magic-action" onClick={reassure}><Sparkles size={18} aria-hidden="true" /> Reassure me</button>
       </section>
       <section className="magic-card magic-song-card" aria-labelledby="song-title"><span className="magic-number">02 / A LITTLE DEDICATION</span><h2 id="song-title">The Song Button</h2>
         <p>Since “Which song would you dedicate to me?” has somehow become one of your most frequently asked questions, I’ve decided to make a permanent solution.</p>

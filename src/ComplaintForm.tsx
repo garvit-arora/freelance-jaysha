@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { useSession } from './lib/cloud'
 import { useEffect, useRef, useState } from 'react'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { HelpdeskDropdown } from './HelpdeskDropdown'
@@ -17,6 +19,7 @@ function initialDraft() {
 }
 
 export function ComplaintForm() {
+  const { session, loading } = useSession()
   const [draft, setDraft] = useState(initialDraft)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -45,7 +48,7 @@ export function ComplaintForm() {
   useEffect(() => { try { sessionStorage.setItem(draftKey, JSON.stringify(draft)) } catch { /* Keep the form usable without storage. */ } }, [draft])
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (submitting.current) return
+    if (submitting.current || loading || !session) return
     setError(''); setSuccess(false)
     if (!categories.includes(draft.category)) { setError('Please select a category.'); return }
     if (!draft.incident.trim()) { setError('Please describe the incident.'); return }
@@ -67,7 +70,7 @@ export function ComplaintForm() {
       <textarea id="complaint-incident" required maxLength={5000} rows={5} placeholder="Tell management exactly what happened..." value={draft.incident} disabled={busy} onChange={event => setDraft({ ...draft, incident: event.target.value })} />
       <fieldset disabled={busy}><legend>How serious is this matter?</legend><div className="helpdesk-severity-options">{severities.map(severity => <label key={severity} className="helpdesk-radio"><input type="radio" name="complaint-severity" value={severity} required checked={draft.severity === severity} onChange={() => setDraft({ ...draft, severity })} /><span>{severity}</span></label>)}</div></fieldset>
       {error && <p className="helpdesk-form-error" role="alert">{error}</p>}
-      <button type="submit" disabled={busy}>{busy ? 'Submitting complaint...' : 'Submit complaint to management'}</button>
+      {session ? <button type="submit" disabled={busy}>{busy ? 'Submitting complaint...' : 'Submit complaint to management'}</button> : <p className="helpdesk-sign-in"><Link to={`/login?next=${encodeURIComponent(window.location.pathname)}`}>Sign in to submit</Link></p>}
     </form>
     <dialog ref={confirmation} className="helpdesk-confirmation" aria-labelledby="complaint-confirmation-message" onCancel={() => setSuccess(false)} onClose={() => setSuccess(false)} onClick={event => { if (event.target === event.currentTarget) setSuccess(false) }}>
       <p id="complaint-confirmation-message">&quot;Your complaint has been successfully escalated to the boyfriend. He has been instructed to stop being an idiot and attend to your concerns immediately.&quot;</p>

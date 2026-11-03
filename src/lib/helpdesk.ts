@@ -1,6 +1,8 @@
 import { cloud } from './cloud'
 export async function submitHelpdesk(kind: 'complaint' | 'request' | 'date-booking', values: Record<string,string>) {
   if (!cloud) throw new Error('Unable to connect')
+  const { data: { session } } = await cloud.auth.getSession()
+  if (!session) throw new Error('Please sign in to submit')
   const key = `helpdesk-pending-${kind}`
   const serialized = JSON.stringify(values)
   let pending: { id:string; receipt:string; values:string } | null = null

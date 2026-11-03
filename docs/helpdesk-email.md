@@ -1,6 +1,6 @@
 # Formspark email confirmations
 
-Every helpdesk form is saved in Supabase before email is requested. The `helpdesk-submit` edge function accepts validated guest submissions without sign-in. A private receipt authorizes `helpdesk-email` to read the corresponding saved submission, builds the corresponding email, and forwards it to Formspark. The browser cannot change recipients or email text, and guest users cannot read helpdesk tables. Delivery status is stored privately to avoid duplicate notifications.
+Every helpdesk form is saved in Supabase before email is requested. The `helpdesk-submit` edge function requires a verified signed-in user for all three departments. A private receipt authorizes `helpdesk-email` to read the corresponding saved submission, builds the corresponding email, and forwards it to Formspark. The browser cannot change recipients or email text, and guest users cannot read helpdesk tables. Delivery status is stored privately to avoid duplicate notifications.
 
 ## Formspark setup
 

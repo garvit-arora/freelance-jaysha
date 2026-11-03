@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { useSession } from './lib/cloud'
 import { useEffect, useRef, useState } from 'react'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { HelpdeskDropdown } from './HelpdeskDropdown'
@@ -17,6 +19,7 @@ function initialDraft() {
 }
 
 export function RequestForm() {
+  const { session, loading } = useSession()
   const [draft, setDraft] = useState(initialDraft)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -45,7 +48,7 @@ export function RequestForm() {
   useEffect(() => { try { sessionStorage.setItem(draftKey, JSON.stringify(draft)) } catch { /* Keep the form usable without storage. */ } }, [draft])
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (submitting.current) return
+    if (submitting.current || loading || !session) return
     setError(''); setSuccess(false)
     if (!categories.includes(draft.category)) { setError('Please select a category.'); return }
     if (!draft.description.trim()) { setError('Please describe your request.'); return }
@@ -67,7 +70,7 @@ export function RequestForm() {
       <textarea id="request-description" required maxLength={5000} rows={5} placeholder="Tell your boyfriend what you have in mind..." value={draft.description} disabled={busy} onChange={event => setDraft({ ...draft, description: event.target.value })} />
       <fieldset disabled={busy}><legend>How soon should your boyfriend attend to this?</legend><div className="helpdesk-severity-options">{urgencies.map(urgency => <label key={urgency} className="helpdesk-radio"><input type="radio" name="request-urgency" value={urgency} required checked={draft.urgency === urgency} onChange={() => setDraft({ ...draft, urgency })} /><span>{urgency}</span></label>)}</div></fieldset>
       {error && <p className="helpdesk-form-error" role="alert">{error}</p>}
-      <button type="submit" disabled={busy}>{busy ? 'Submitting request...' : 'Submit request'}</button>
+      {session ? <button type="submit" disabled={busy}>{busy ? 'Submitting request...' : 'Submit request'}</button> : <p className="helpdesk-sign-in"><Link to={`/login?next=${encodeURIComponent(window.location.pathname)}`}>Sign in to submit</Link></p>}
     </form>
     <dialog ref={confirmation} className="helpdesk-confirmation" aria-labelledby="request-confirmation-message" onCancel={() => setSuccess(false)} onClose={() => setSuccess(false)} onClick={event => { if (event.target === event.currentTarget) setSuccess(false) }}>
       <p id="request-confirmation-message">Your request has been received. Your boyfriend has been notified and is currently considering how to make you the happiest girl in the world.</p>

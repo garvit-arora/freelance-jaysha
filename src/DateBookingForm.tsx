@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { useSession } from './lib/cloud'
 import { useEffect, useRef, useState } from 'react'
 import { CalendarPicker } from './CalendarPicker'
 import { format, parseISO } from 'date-fns'
@@ -18,6 +20,7 @@ function initialDraft() {
 }
 
 export function DateBookingForm() {
+  const { session, loading } = useSession()
   const [draft, setDraft] = useState(initialDraft)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -40,7 +43,7 @@ export function DateBookingForm() {
   }, [success])
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (submitting.current) return
+    if (submitting.current || loading || !session) return
     setError(''); setSuccess(false)
     if (!draft.preferredDate || draft.preferredDate < today || !experiences.includes(draft.experience)) { setError('Choose a preferred date and date experience.'); return }
     submitting.current = true; setBusy(true)
@@ -62,7 +65,7 @@ export function DateBookingForm() {
       <label htmlFor="booking-details">Anything else you'd like?</label>
       <textarea id="booking-details" rows={3} maxLength={2000} disabled={busy} placeholder="Your preferred place, time, outfit, or anything else..." value={draft.details} onChange={event => setDraft({ ...draft, details: event.target.value })} />
       {error && <p className="helpdesk-form-error" role="alert">{error}</p>}
-      <button type="submit" disabled={busy}>{busy ? 'Requesting your date...' : 'Request my date'}</button>
+      {session ? <button type="submit" disabled={busy}>{busy ? 'Requesting your date...' : 'Request my date'}</button> : <p className="helpdesk-sign-in"><Link to={`/login?next=${encodeURIComponent(window.location.pathname)}`}>Sign in to submit</Link></p>}
     </form>
     <dialog ref={confirmation} className="helpdesk-confirmation" aria-labelledby="booking-confirmation" onCancel={() => setSuccess(false)} onClose={() => setSuccess(false)} onClick={event => { if (event.target === event.currentTarget) setSuccess(false) }}>
       <p id="booking-confirmation">&quot;Your date request has been sent to your personal date planner. Please allow 24 hours for your boyfriend to prepare an unnecessarily elaborate response&quot;.</p>{success && <HelpdeskEmailStatus kind="date-booking" submissionId={submittedId} receipt={receipt} />}<button type="button" autoFocus onClick={() => setSuccess(false)}>Close</button>

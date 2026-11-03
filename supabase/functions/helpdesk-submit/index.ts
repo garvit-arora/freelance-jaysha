@@ -8,18 +8,21 @@ Deno.serve(async request => {
   if (request.method === 'OPTIONS') return new Response(null,{ headers:cors })
   if (request.method !== 'POST') return reply({error:'Method not allowed'},405)
   try {
+    const admin = createClient(Deno.env.get('SUPABASE_URL')!,Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,{auth:{persistSession:false}})
+    const token = (request.headers.get('Authorization') || '').replace(/^Bearer /i,'')
+    const {data:{user},error:authError} = await admin.auth.getUser(token)
+    if (authError || !user) return reply({error:'Please sign in to submit.'},401)
     const raw = await request.text()
     if (raw.length > 20000) return reply({error:'Form is too long'},400)
     const {kind,id,receipt,values} = JSON.parse(raw)
     if (!Object.hasOwn(tables,kind) || !/^[\da-f-]{36}$/i.test(id || '') || !/^[\da-f-]{72}$/i.test(receipt || '') || !values || typeof values !== 'object') return reply({error:'Invalid form'},400)
     const selected = fields[kind as keyof typeof fields]
     if (selected.some(field => typeof values[field] !== 'string' || values[field].length > (field === 'details' ? 2000 : field === 'incident' || field === 'description' ? 5000 : 100))) return reply({error:'Invalid fields'},400)
-    const admin = createClient(Deno.env.get('SUPABASE_URL')!,Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,{auth:{persistSession:false}})
     const hash = await digest(receipt)
     const {data:existing} = await admin.from('helpdesk_email_deliveries').select('guest_receipt_hash').eq('kind',kind).eq('submission_id',id).maybeSingle()
     if (existing) return existing.guest_receipt_hash === hash ? reply({id}) : reply({error:'Invalid receipt'},403)
     const payload = Object.fromEntries(selected.map(field => [field,values[field].trim()]))
-    const {error} = await admin.rpc('save_guest_helpdesk',{p_kind:kind,p_id:id,p_values:payload,p_receipt_hash:hash})
+    const {error} = await admin.rpc('save_signed_helpdesk',{p_kind:kind,p_id:id,p_values:payload,p_receipt_hash:hash,p_user_id:user.id})
     if (error) {
       const {data:duplicate} = await admin.from('helpdesk_email_deliveries').select('guest_receipt_hash').eq('kind',kind).eq('submission_id',id).maybeSingle()
       if (duplicate?.guest_receipt_hash === hash) return reply({id})
