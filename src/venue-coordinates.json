@@ -334,5 +334,50 @@
     "verifiedAt": "2026-10-24",
     "precision": "City reference point",
     "provenance": "user-provided"
+  },
+  "qureshi kabab corner sector 54 gurgaon": {
+    "name": "Qureshi's Kabab Corner, Sector 54",
+    "latitude": 28.4372459,
+    "longitude": 77.10443426,
+    "source": "https://magicpin.in/Gurgaon/Sector-54/Restaurant/Qureshis-Kabab-Corner/store/80437",
+    "precision": "Published restaurant directions point; Shop 9, La Mart, Sector 54",
+    "verifiedAt": "2026-11-03",
+    "address": "Shop 9, La Mart Market, Golf Course Road, Sector 54, Gurugram"
+  },
+  "forresta gurgaon": {
+    "name": "The Forestta, Sector 54",
+    "latitude": 28.4392663,
+    "longitude": 77.1039979,
+    "source": "https://weddingz.in/gurugram/the-forestta-sector-54/",
+    "precision": "Published venue directions point; Plot 27, Saraswati Kunj, Sector 54",
+    "verifiedAt": "2026-11-03",
+    "identitySource": "https://theforesttacafe.com/contact",
+    "address": "Plot 27, Saraswati Kunj, Golf Course Road, Sector 54, Gurugram"
+  },
+  "yellow bowl rohini": {
+    "name": "The Yellow Bowl, Rohini",
+    "latitude": 28.7398408,
+    "longitude": 77.1228942,
+    "source": "https://www.zomato.com/ncr/the-yellow-bowl-rohini-new-delhi/info",
+    "precision": "Published restaurant directions point; H/5/29, Sector 16, Rohini",
+    "verifiedAt": "2026-11-03",
+    "selectionNote": "The user approved either Rohini or Pitampura for the general Yellow Bowl visit; the verified Rohini branch is used."
+  },
+  "wonder carnival gurgaon": {
+    "name": "Wonder Carnival, SCO 25, Sector 29",
+    "latitude": 28.468711,
+    "longitude": 77.0617,
+    "source": "https://wanderlog.com/place/details/17656340/gurugram-summer-carnival",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published SCO 25 carnival address point; venue address confirmed by user",
+    "address": "SCO 25, Sector 29, Gurugram, Haryana 122009"
+  },
+  "cafeteria and co": {
+    "name": "Cafeteria & Co., GTB Nagar",
+    "latitude": 28.69437,
+    "longitude": 77.204239,
+    "source": "https://magicpin.in/New-Delhi/Hudson-Lane/Restaurant/Cafeteria-and-Co./store/282ab/",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published restaurant directions point; G-14, Hudson Lane, GTB Nagar"
   }
 }

@@ -124,7 +124,7 @@ function Hero() {
     <section aria-label="Our world, a little closer" className="explore-photo-hero">
       <img src="/bg-post-timeline.jpeg" alt="Jaysha" className="explore-photo-image" fetchPriority="high" />
       <div className="explore-photo-shade" aria-hidden="true" />
-      <div className="explore-photo-copy"><span className="hero-welcome-line">Ladies and Gentlemen, Welcome to</span><h1>The World of<br />Jaysha Singyan</h1><p className="hero-welcome-subtext">&quot;There's a lot more to her than meets the eye&quot;</p></div>
+      <div className="explore-photo-copy"><span className="hero-welcome-line">Ladies and Gentlemen, Welcome to</span><h1>The World of<br /><span className="hero-jaysha-name">Jaysha Singyan</span></h1><p className="hero-welcome-subtext">&quot;There's a lot more to her than meets the eye&quot;</p></div>
       <span className="explore-photo-hint">Scroll to explore &#8595;</span>
     </section>
     <AboutHer />

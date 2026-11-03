@@ -46,11 +46,9 @@ Ramprastha Vaishali and Ramprastha share one pin. Park Plaza and Park Plaza Shah
 
 ## Still unresolved
 
-- cafeteria and co
 - chawla restaurant
 - cp inox
 - department of political science
-- forresta gurgaon
 - gallivanto in rohini
 - hari om chole bhature
 - haveli murthal
@@ -60,12 +58,23 @@ Ramprastha Vaishali and Ramprastha share one pin. Park Plaza and Park Plaza Shah
 - presidium school
 - punjab grill
 - pvr icon
-- qureshi kabab corner sector 54 gurgaon
 - radisson
 - sector 4 vaishali
 - stellar inn
 - vada pav ghaziabad
 - vikaspuri pizza
-- wonder carnival gurgaon
-- yellow bowl
-- yellow bowl rohini
+
+## Added venue pins (3 November 2026)
+
+- Qureshi's Kabab Corner, Sector 54: 28.4372459, 77.10443426. Published restaurant directions point; Shop 9, La Mart, Sector 54. [Coordinate source](https://magicpin.in/Gurgaon/Sector-54/Restaurant/Qureshis-Kabab-Corner/store/80437)
+- The Forestta, Sector 54: 28.4392663, 77.1039979. Published venue directions point; Plot 27, Saraswati Kunj, Sector 54. [Coordinate source](https://weddingz.in/gurugram/the-forestta-sector-54/)
+- The Yellow Bowl, Rohini: 28.7398408, 77.1228942. Published restaurant directions point; H/5/29, Sector 16, Rohini. [Coordinate source](https://www.zomato.com/ncr/the-yellow-bowl-rohini-new-delhi/info)
+
+
+## Branch confirmations from the user
+
+- Cafeteria & Co., GTB Nagar: **28.69437, 77.204239**, the published directions point for G-14, Hudson Lane. [Source](https://magicpin.in/New-Delhi/Hudson-Lane/Restaurant/Cafeteria-and-Co./store/282ab/).
+- Yellow Bowl: the user approved either Rohini or Pitampura. Both Yellow Bowl memories use the verified Rohini point **28.7398408, 77.1228942** (H/5/29, Sector 16), grouped as one venue pin with both visits retained.
+- Wonder Carnival: replaced the earlier general Leisure Valley Ground anchor with **28.468711, 77.0617**, the published carnival listing at the user-specified **SCO 25, Sector 29** address. The source lists the place as Gurugram Summer Carnival. [Source](https://wanderlog.com/place/details/17656340/gurugram-summer-carnival).
+- Forestta remains at **28.4392663, 77.1039979**, Plot 27, Saraswati Kunj, Golf Course Road, Sector 54.
+- Qureshi Kabab Corner remains at **28.4372459, 77.10443426**, Shop 9, La Mart Market, Golf Course Road, Sector 54.

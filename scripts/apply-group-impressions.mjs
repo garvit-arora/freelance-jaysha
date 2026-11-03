@@ -6,7 +6,7 @@ const seed = await readFile('supabase/migrations/202610240002_impressions.sql', 
 const seededGroupIds = [...seed.matchAll(/insert into public\.impression_messages[^\n]+values \('([^']+)', 'group'/g)].map(match => match[1])
 let query = `do $migration$ begin
 if not exists (select 1 from public.app_seed_history where name = 'real-group-impressions-20261031') then
-update public.impression_contacts set name='Lakshay' where id='lakshya';
+update public.impression_contacts set name='Lakshya' where id='lakshya';
 update public.impression_contacts set name='The group chat', label='Friends describing Jaysha in their own words' where id='group';
 delete from public.impression_messages where id in (${seededGroupIds.map(quote).join(',')});
 delete from public.impression_contacts where id='details';\n`

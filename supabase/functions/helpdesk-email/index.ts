@@ -30,6 +30,8 @@ Deno.serve(async request => {
     await admin.from('helpdesk_email_deliveries').upsert({ kind,submission_id:submissionId }, { onConflict:'kind,submission_id',ignoreDuplicates:true })
     const { data:delivery } = await admin.from('helpdesk_email_deliveries').select('*').eq('kind',kind).eq('submission_id',submissionId).single()
     if (!delivery) return reply({ error:'Email status unavailable' },503)
+    // Sending is paused at the user's explicit request. Do not enable without fresh approval.
+    return reply({ sent:false, paused:true })
     if (delivery.status === 'sent') return reply({ sent:true })
     const endpoint = Deno.env.get('FORMSPARK_HELPDESK_URL') || ''
     if (!/^https:\/\/submit-form\.com\/[A-Za-z0-9_-]+$/.test(endpoint) || endpoint.endsWith('/echo')) return reply({ sent:false, pending:true })

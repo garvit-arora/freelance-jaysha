@@ -5,7 +5,7 @@ export type VenueCoordinate = { name: string; latitude: number; longitude: numbe
 export const venueCoordinates: Record<string, VenueCoordinate> = registry
 export function venueKey(memory: DateMemory): string {
   const key = memory.place.trim().toLowerCase()
-  return ({ 'ramprastha vaishali': 'ramprastha', 'park plaza': 'park plaza shahdara' } as Record<string, string>)[key] || key
+  return ({ 'ramprastha vaishali': 'ramprastha', 'park plaza': 'park plaza shahdara', 'yellow bowl': 'yellow bowl rohini' } as Record<string, string>)[key] || key
 }
 export function venueFor(memory: DateMemory): VenueCoordinate | undefined {
   return venueCoordinates[venueKey(memory)]

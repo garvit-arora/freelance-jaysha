@@ -35,22 +35,5 @@
 .helpdesk-card .helpdesk-department:focus-visible{outline-offset:-3px;border-radius:0}
 @media(max-width:750px){.helpdesk-card .helpdesk-department{padding-top:22px;padding-bottom:22px}.helpdesk-card .helpdesk-department:last-child{padding-bottom:36px}}
 @media(max-width:600px){.helpdesk-card .helpdesk-departments{margin-left:-20px;margin-right:-20px;margin-bottom:-24px}.helpdesk-card .helpdesk-department{padding-left:20px;padding-right:20px}.helpdesk-card .helpdesk-department:last-child{padding-bottom:24px}}
-/* Neutral black Helpdesk surfaces. */
-.world-page.helpdesk-page .helpdesk-card,
-.world-page.helpdesk-page .helpdesk-form,
-.world-page.helpdesk-page .helpdesk-department,
-.world-page.helpdesk-page .helpdesk-department:hover,
-.world-page.helpdesk-page .helpdesk-dropdown-trigger,
-.world-page.helpdesk-page .helpdesk-dropdown-menu,
-.world-page.helpdesk-page .helpdesk-dropdown-options,
-.world-page.helpdesk-page .helpdesk-dropdown-options>button,
-.world-page.helpdesk-page .helpdesk-dropdown-options>button:hover,
-.world-page.helpdesk-page .helpdesk-dropdown-options>button.is-active,
-.world-page.helpdesk-page .helpdesk-dropdown-options>button[aria-selected=true],
-.world-page.helpdesk-page .helpdesk-form select,
-.world-page.helpdesk-page .helpdesk-form textarea,
-.world-page.helpdesk-page .helpdesk-radio,
-.world-page.helpdesk-page .helpdesk-radio:has(input:checked),
-.world-page.helpdesk-page .calendar-picker-trigger,
-.world-page.helpdesk-page .calendar-picker-popup,
-.helpdesk-confirmation{background:#000}
+/* Separate the introduction from the three boxed department actions. */
+.helpdesk-card{padding:0;border:0;border-radius:0;background:transparent;overflow:visible}.helpdesk-card .helpdesk-departments{margin:48px 0 0;gap:16px}.helpdesk-card .helpdesk-department{padding:22px 24px;border:1px solid #343434;border-radius:14px;background:#10100ed9}.helpdesk-card .helpdesk-department:last-child{padding-bottom:22px}.helpdesk-card .helpdesk-department:hover{background:#ffffff08;border-color:#9d8a6c}.helpdesk-card .helpdesk-department:focus-visible{border-radius:14px;outline-offset:4px}@media(max-width:600px){.helpdesk-card{padding:0;border:0;background:transparent}.helpdesk-card .helpdesk-departments{margin:38px 0 0;gap:14px}.helpdesk-card .helpdesk-department{padding:20px}.helpdesk-card .helpdesk-department:last-child{padding-bottom:20px}}

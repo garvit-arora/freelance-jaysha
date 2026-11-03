@@ -1,10 +1,10 @@
 do $migration$ begin
 if not exists (select 1 from public.app_seed_history where name = 'real-group-impressions-20261031') then
-update public.impression_contacts set name='Lakshay' where id='lakshya';
+update public.impression_contacts set name='Lakshya' where id='lakshya';
 update public.impression_contacts set name='The group chat', label='Friends describing Jaysha in their own words' where id='group';
 delete from public.impression_messages where id in ('a7b948a8-2884-540b-b1d3-a76a13fed28e','85d45ad7-a7b1-54a4-849f-dc74273c3258','2cd04d8c-eae0-56b7-beba-475bdad0a01c','3a045515-80e1-551e-8cb0-fdcc5b034c4b','ce9048b7-138b-5f97-af80-1938f3ef4ab1','3c346eb6-b630-58fb-9617-5431bf1cfaf5');
 delete from public.impression_contacts where id='details';
-insert into public.impression_contacts(id,name,label,avatar) values ('lakshya','Lakshay','Group member','L') on conflict(id) do update set name=excluded.name;
+insert into public.impression_contacts(id,name,label,avatar) values ('lakshya','Lakshya','Group member','L') on conflict(id) do update set name=excluded.name;
 insert into public.impression_messages(contact_id,sender_id,body,created_at) values ('group','lakshya','Describe jaysha in your own words','2026-10-31T11:00:00+05:30'::timestamptz + interval '0 seconds');
 insert into public.impression_contacts(id,name,label,avatar) values ('participant-daisy','Daisy','Group member','D') on conflict(id) do update set name=excluded.name;
 insert into public.impression_messages(contact_id,sender_id,body,created_at) values ('group','participant-daisy','I never met someone like you
