@@ -1,6 +1,6 @@
 // Month interval and week grouping adapted from origin-space/event-calendar (MIT).
 // See third-party/event-calendar-LICENSE.md.
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { addMonths, eachDayOfInterval, endOfMonth, format, isToday, startOfMonth } from 'date-fns'
 import { ArrowLeft, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react'
@@ -59,7 +59,7 @@ export function CalendarPage() {
       return <section className="stories-month" key={format(month, 'yyyy-MM')} aria-label={format(month, 'MMMM yyyy')}><h2>{format(month, 'MMMM yyyy')}</h2><div className="stories-weekdays">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => <span key={day}>{day}</span>)}</div><div className="stories-days">{Array.from({ length: startOfMonth(month).getDay() }, (_, index) => <span key={`blank-${index}`} />)}{days.map(day => {
         const date = dateKey(day), cover = covers.get(date)
         const destination = `/calendar/${date}`
-        return <Link key={date} to={destination} className={`stories-day ${cover ? 'has-memory' : ''} ${isToday(day) ? 'today' : ''}`} onClick={event => { if (loading || status !== 'ready') event.preventDefault() }} aria-disabled={loading || status !== 'ready'} aria-label={`${dateLabel(day)}: ${cover ? 'view memories' : 'add memories'}`} aria-current={isToday(day) ? 'date' : undefined}>{cover && <img src={cover} alt="" loading="lazy" />}<time dateTime={format(day, 'yyyy-MM-dd')}>{format(day, 'd')}</time></Link>
+        return <Link key={date} to={destination} style={cover ? { '--memory-hue': Math.round((Date.UTC(day.getFullYear(), day.getMonth(), day.getDate()) / 86400000 * 137.508) % 360) } as CSSProperties : undefined} className={`stories-day ${cover ? 'has-memory' : ''} ${isToday(day) ? 'today' : ''}`} onClick={event => { if (loading || status !== 'ready') event.preventDefault() }} aria-disabled={loading || status !== 'ready'} aria-label={`${dateLabel(day)}: ${cover ? 'view memories' : 'add memories'}`} aria-current={isToday(day) ? 'date' : undefined}>{cover && <img src={cover} alt="" loading="lazy" />}<time dateTime={format(day, 'yyyy-MM-dd')}>{format(day, 'd')}</time></Link>
       })}</div></section>
     })}</div><p className="stories-note">Every circle holds a memory. Open any day to view or add yours.</p>
 
