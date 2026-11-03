@@ -1,5 +1,6 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import { helpdeskEmail } from './templates.mjs'
+import { canSendSubmission } from './delivery-policy.mjs'
 const cors = { 'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Headers':'authorization, x-client-info, apikey, content-type', 'Access-Control-Allow-Methods':'POST, OPTIONS' }
 const reply = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers:{ ...cors, 'Content-Type':'application/json' } })
 const tables = { complaint:'helpdesk_complaints', request:'helpdesk_requests', 'date-booking':'helpdesk_date_bookings' }
@@ -30,8 +31,8 @@ Deno.serve(async request => {
     await admin.from('helpdesk_email_deliveries').upsert({ kind,submission_id:submissionId }, { onConflict:'kind,submission_id',ignoreDuplicates:true })
     const { data:delivery } = await admin.from('helpdesk_email_deliveries').select('*').eq('kind',kind).eq('submission_id',submissionId).single()
     if (!delivery) return reply({ error:'Email status unavailable' },503)
-    // Sending is paused at the user's explicit request. Do not enable without fresh approval.
-    return reply({ sent:false, paused:true })
+    // Earlier submissions remain paused even if someone retries them later.
+    if (!canSendSubmission(row.created_at)) return reply({ sent:false, paused:true })
     if (delivery.status === 'sent') return reply({ sent:true })
     const endpoint = Deno.env.get('FORMSPARK_HELPDESK_URL') || ''
     if (!/^https:\/\/submit-form\.com\/[A-Za-z0-9_-]+$/.test(endpoint) || endpoint.endsWith('/echo')) return reply({ sent:false, pending:true })

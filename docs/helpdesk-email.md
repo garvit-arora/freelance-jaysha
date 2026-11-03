@@ -14,7 +14,7 @@ Every helpdesk form is saved in Supabase before email is requested. The `helpdes
 
 The notification subject is supplied per department. A single form can serve all three departments. Do not enable an extra autoresponder unless you want duplicate copies.
 
-Email sending is currently paused in the edge function at the user's request. Saving a helpdesk form does not send email while this pause is active. Do not enable sending without fresh explicit approval.
+Email forwarding is approved only for submissions created on or after 2026-11-03 at 13:49:16 UTC. Older submissions remain paused, including manual retries. No backfill or test emails are authorized.
 
 ## Deployment
 
