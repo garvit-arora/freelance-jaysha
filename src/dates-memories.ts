@@ -353,7 +353,7 @@ export const dateMemories: DateMemory[] = [
     "date": "08-06-2025",
     "place": "presidium school",
     "note": "I swear I play better cricket when you’re not around",
-    "location": "delhi"
+    "location": "ghaziabad"
   },
   {
     "id": "memory-48",

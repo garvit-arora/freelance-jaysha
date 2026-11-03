@@ -21,3 +21,15 @@ test('venue coordinates have provenance and are bound to actual named memories',
  assert.equal(coordinates['park plaza'], undefined)
  assert.equal(coordinates['nsp tasteland'].precision, 'NSP neighbourhood only')
 })
+
+test('all attached memories have pins including entries 25, 46 and corrected Indirapuram school', () => {
+ const aliases = {'ramprastha vaishali':'ramprastha','park plaza':'park plaza shahdara','yellow bowl':'yellow bowl rohini'}
+ for (const memory of dateMemories) {
+  const key = memory.place.toLowerCase()
+  assert.ok(coordinates[aliases[key] || key], `${memory.id}: ${memory.place}`)
+ }
+ assert.equal(coordinates['department of political science'].latitude, 28.68731)
+ assert.equal(coordinates['vada pav ghaziabad'].longitude, 77.341185)
+ assert.equal(coordinates['presidium school'].name, 'Presidium School, Indirapuram')
+ assert.equal(coordinates['presidium school'].longitude, 77.369436)
+})

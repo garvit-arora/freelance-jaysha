@@ -1,0 +1,422 @@
+[
+  {
+    "key": "sector 4 vaishali lenskart.com",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.6447199",
+        "77.3384855"
+      ],
+      [
+        "28.6447199",
+        "77.3384855"
+      ]
+    ]
+  },
+  {
+    "key": "boho bistro vaishali",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.646648",
+        "77.339891"
+      ]
+    ]
+  },
+  {
+    "key": "cp ministry of beer",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.633316514",
+        "77.2227491811"
+      ]
+    ]
+  },
+  {
+    "key": "kesar pitampura",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.688281786",
+        "77.1219158918"
+      ]
+    ]
+  },
+  {
+    "key": "pindi pandara road",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.6079556214",
+        "77.2298221663"
+      ]
+    ]
+  },
+  {
+    "key": "nebo ansal plaza",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.5623102558",
+        "77.2242954746"
+      ]
+    ]
+  },
+  {
+    "key": "unwind cafe ansal plaza",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.562312",
+        "77.224688"
+      ]
+    ]
+  },
+  {
+    "key": "delhi heights cafe nsp",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.69529442",
+        "77.15409222"
+      ]
+    ]
+  },
+  {
+    "key": "bobby punjabj rasoi",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.7183196814",
+        "77.1253276616"
+      ]
+    ]
+  },
+  {
+    "key": "aerocity novotel",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.553492",
+        "77.12324"
+      ]
+    ]
+  },
+  {
+    "key": "rohini sector 18 metro station",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "bangla sahib",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "jama masjid",
+    "status": 200,
+    "publishedPairs": []
+  },
+  {
+    "key": "venky college",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "divya jyoti apartments",
+    "status": 200,
+    "publishedPairs": []
+  },
+  {
+    "key": "mahagun metro mall",
+    "status": 200,
+    "publishedPairs": []
+  },
+  {
+    "key": "orchid petals gurgaon",
+    "status": 200,
+    "publishedPairs": []
+  },
+  {
+    "key": "elegante mall",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.6960686",
+        "77.1536813"
+      ]
+    ]
+  },
+  {
+    "key": "32nd avenue",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "salt stayz pitampura",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "park plaza shahdara",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "national museum cp",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.611811",
+        "77.219262"
+      ]
+    ]
+  },
+  {
+    "key": "mayfield gardens sector 51 gurgaon",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "crpf public school",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "nirman vihar cinepolis",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "bharat mandapam bassi",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "ramprastha",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "ramprastha vaishali",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "mcd shopprix vaishali",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "nsp tasteland",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "jim corbett",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "manali",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "wembley estate",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "manesar",
+    "status": "user-supplied anchor"
+  },
+  {
+    "key": "qureshi kabab corner sector 54 gurgaon",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.4372459",
+        "77.10443426"
+      ],
+      [
+        "28.4372459",
+        "77.10443426"
+      ]
+    ]
+  },
+  {
+    "key": "forresta gurgaon",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.4392663",
+        "77.1039979"
+      ],
+      [
+        "28.4392663",
+        "77.1039979"
+      ]
+    ]
+  },
+  {
+    "key": "yellow bowl rohini",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.7398408000",
+        "77.1228942000"
+      ]
+    ]
+  },
+  {
+    "key": "wonder carnival gurgaon",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.468711",
+        "77.0617"
+      ]
+    ]
+  },
+  {
+    "key": "cafeteria and co",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.69437",
+        "77.204239"
+      ],
+      [
+        "28.69437",
+        "77.204239"
+      ]
+    ]
+  },
+  {
+    "key": "cp inox",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.633919",
+        "77.22093"
+      ]
+    ]
+  },
+  {
+    "key": "pvr icon",
+    "status": "<urlopen error timed out>"
+  },
+  {
+    "key": "stellar inn",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.709016369",
+        "77.109367906"
+      ]
+    ]
+  },
+  {
+    "key": "sector 4 vaishali",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "punjab grill",
+    "status": "<urlopen error timed out>"
+  },
+  {
+    "key": "gallivanto in rohini",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.740815",
+        "77.13302"
+      ]
+    ]
+  },
+  {
+    "key": "haveli murthal",
+    "status": "<urlopen error timed out>"
+  },
+  {
+    "key": "pind balucchi",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.723974",
+        "77.113846"
+      ]
+    ]
+  },
+  {
+    "key": "chawla restaurant",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.64798",
+        "77.303029"
+      ],
+      [
+        "28.64798",
+        "77.303029"
+      ]
+    ]
+  },
+  {
+    "key": "opulence",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.680554376",
+        "77.091676394"
+      ]
+    ]
+  },
+  {
+    "key": "shri ram centre for performing arts, mandi house",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "hari om chole bhature",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.70961589",
+        "77.13467382"
+      ],
+      [
+        "28.70961589",
+        "77.13467382"
+      ]
+    ]
+  },
+  {
+    "key": "radisson",
+    "status": 200,
+    "publishedPairs": []
+  },
+  {
+    "key": "presidium school",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.7128642",
+        "77.1040305"
+      ],
+      [
+        "28.7128642",
+        "77.1040305"
+      ]
+    ],
+    "note": "Audit fetched the earlier Rohini source before the user-corrected Indirapuram replacement; see venue-audit.md for current coordinates."
+  },
+  {
+    "key": "vikaspuri pizza",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.6221224000",
+        "77.0582328000"
+      ]
+    ]
+  },
+  {
+    "key": "madras cafe shalimar",
+    "status": 200,
+    "publishedPairs": [
+      [
+        "28.706629",
+        "77.162795"
+      ],
+      [
+        "28.706629",
+        "77.162795"
+      ]
+    ]
+  }
+]

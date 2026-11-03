@@ -478,12 +478,13 @@
     "precision": "Published hotel coordinates; Sohna Road branch selected with user permission"
   },
   "presidium school": {
-    "name": "Presidium School, Rohini Sector 5",
-    "latitude": 28.7128642,
-    "longitude": 77.1040305,
-    "source": "https://magicpin.in/New-Delhi/Sector-5/Education/Presidium-Rohini-Sector-5-%7C-Best-School-In-Rohini/store/1b59a0c/",
+    "name": "Presidium School, Indirapuram",
+    "latitude": 28.640925,
+    "longitude": 77.369436,
+    "source": "https://www.yellowpages.ma/phone-91-7838654425-Presidium-School-Indirapuram-Ghaziabad-INEN4540442.html",
+    "identitySource": "https://www.presidiumindirapuram.com/contactus.php",
     "verifiedAt": "2026-11-03",
-    "precision": "Published school point; Rohini Sector 5 branch selected with user permission"
+    "precision": "Published school listing point; A-16 Habitat Centre, Ahinsa Khand 1, Indirapuram. Branch confirmed by user."
   },
   "vikaspuri pizza": {
     "name": "Circle of Crust, Uttam Nagar",
@@ -500,5 +501,22 @@
     "source": "https://magicpin.in/New-Delhi/Shalimar-Bagh/Restaurant/Madras-Dosa-And-Chinese/store/3924/",
     "verifiedAt": "2026-11-03",
     "precision": "Published restaurant point; BN Market identity confirmed by user"
+  },
+  "department of political science": {
+    "name": "Department of Political Science, University of Delhi",
+    "latitude": 28.68731,
+    "longitude": 77.20678,
+    "source": "https://mapcarta.com/W350831062",
+    "identitySource": "https://www.polscience.du.ac.in/Home/Contact-Us",
+    "verifiedAt": "2026-11-03",
+    "precision": "Faculty of Social Sciences building, second floor; DU North Campus inferred from the department name, not a confirmed college branch."
+  },
+  "vada pav ghaziabad": {
+    "name": "Goli Vada Pav, near Shopprix Mall, Vaishali",
+    "latitude": 28.643126,
+    "longitude": 77.341185,
+    "source": "https://wanderlog.com/place/details/2849464/goli-vadapav-no1",
+    "verifiedAt": "2026-11-03",
+    "precision": "Published Goli venue point near Shopprix Mall. Another listing gives 28.6427943, 77.3407768; exact storefront remains unverified."
   }
 }

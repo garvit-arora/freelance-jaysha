@@ -45,8 +45,6 @@ Ramprastha Vaishali and Ramprastha share one pin. Park Plaza and Park Plaza Shah
 
 ## Still unresolved
 
-- department of political science
-- vada pav ghaziabad
 
 ## Added venue pins (3 November 2026)
 
@@ -90,3 +88,7 @@ The user permitted any branch for Presidium, Radisson, and Hari Om and confirmed
 - Presidium School, Rohini Sector 5: 28.7128642, 77.1040305. Published school point; Rohini Sector 5 branch selected with user permission. [Source](https://magicpin.in/New-Delhi/Sector-5/Education/Presidium-Rohini-Sector-5-%7C-Best-School-In-Rohini/store/1b59a0c/)
 - Circle of Crust, Uttam Nagar: 28.6221224, 77.0582328. Published restaurant coordinates; D-28/29 Najafgarh Road. User confirmed this branch despite the original Vikaspuri label and 2024 date.. [Source](https://www.zomato.com/ncr/circle-of-crust-uttam-nagar-new-delhi)
 - Madras Dosa & Chinese, Shalimar Bagh: 28.706629, 77.162795. Published restaurant point; BN Market identity confirmed by user. [Source](https://magicpin.in/New-Delhi/Shalimar-Bagh/Restaurant/Madras-Dosa-And-Chinese/store/3924/)
+
+## Latest complete audit
+
+See [the 63-entry audit](venue-audit.md) for the current complete list, corrections to entries 25, 46 and 47, and every location whose exact stop or historical branch remains uncertain. This supersedes the earlier Rohini Presidium selection.
