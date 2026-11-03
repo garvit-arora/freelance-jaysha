@@ -5,14 +5,16 @@ Every helpdesk form is saved in Supabase before email is requested. The `helpdes
 ## Formspark setup
 
 1. Create one form and copy its action URL (`https://submit-form.com/FORM_ID`). Add it to `.env` as `FORMSPARK_HELPDESK_URL`.
-2. In that form's email notification settings, enable notifications for `lakshyagrover01@gmail.com` and `jayshasingyan03@gmail.com`. Complete any recipient verification requested by Formspark.
+2. If email sending is approved later, configure only `lakshyagrover01@gmail.com` in the form's email notification settings. Complete any recipient verification requested by Formspark. Do not add Jaysha as a recipient.
 3. Set the notification template to render the submitted `message` field. The following code preserves the three supplied email bodies and their line breaks:
 
 ```html
 <div style="text-align:left;white-space:pre-wrap;font-family:Arial,sans-serif;font-size:16px;line-height:1.7">{{data.message}}</div>
 ```
 
-The notification subject is supplied per department. A single form can serve all three departments. Do not enable an extra autoresponder to these same addresses unless you want duplicate copies.
+The notification subject is supplied per department. A single form can serve all three departments. Do not enable an extra autoresponder unless you want duplicate copies.
+
+Email sending is currently paused in the edge function at the user's request. Saving a helpdesk form does not send email while this pause is active. Do not enable sending without fresh explicit approval.
 
 ## Deployment
 

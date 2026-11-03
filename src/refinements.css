@@ -44,4 +44,5 @@
 
 .explore-photo-copy .hero-welcome-line{text-transform:none}
 
-.explore-photo-copy .hero-jaysha-name{font-size:1.16em;line-height:1.15}
+.explore-photo-copy .hero-jaysha-name{font-size:1.35em;line-height:1.15}
+@media(max-width:600px){.explore-photo-copy .hero-jaysha-name{font-size:clamp(40px,12vw,72px)}}
