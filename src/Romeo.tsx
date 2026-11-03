@@ -41,7 +41,7 @@ export function RomeoPage() {
       heading.current?.focus({ preventScroll: true })
       heading.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
     }
-    document.title = 'Jaysha singh'
+    document.title = 'Jaysha Singyan'
   }, [chapter])
   const current = romeoChapters[chapter]
   return <main className="romeo-page"><header className="romeo-page-header"><Link to="/home"><ArrowLeft size={17} /> Our world</Link><span>A VERY UNOFFICIAL LOVE STORY</span><Heart size={17} /></header>

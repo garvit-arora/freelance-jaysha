@@ -13,6 +13,7 @@ import { ContactButton } from './ContactButton'
 import { AboutHer } from './AboutHer'
 import { FaqSection } from './FaqSection'
 import { MagicButtonsPage } from './MagicButtons'
+import { GirlfriendHelpdeskPage, ComplaintDepartmentPage, RequestDepartmentPage, DateBookingDepartmentPage } from './GirlfriendHelpdesk'
 import { MusicButton } from './MusicButton'
 import './refinements.css'
 import SlideCommit from './SlideCommit'
@@ -69,6 +70,7 @@ function App() {
   const location = useLocation()
   const exploring = location.pathname === '/home' || (location.pathname === '/' && location.hash === '#explore')
   useLayoutEffect(() => {
+    if (location.pathname.startsWith('/girlfriend-helpdesk')) return
     if (['/impressions', '/romeo', '/story', '/dates', '/calendar', '/dictionary'].includes(location.pathname)) return
     const motion = gsap.matchMedia()
     motion.add('(prefers-reduced-motion: no-preference)', () => {
@@ -88,7 +90,7 @@ function App() {
     return () => motion.revert()
   }, [location.pathname, exploring])
   useEffect(() => {
-    document.title = 'Jaysha singh'
+    document.title = 'Jaysha Singyan'
     window.scrollTo(0, 0)
     if (exploring) document.querySelector<HTMLElement>('main')?.focus({ preventScroll: true })
     ScrollTrigger.refresh()
@@ -99,6 +101,10 @@ function App() {
     <Route path="/explore" element={<Navigate to="/home" replace />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/magic-buttons" element={<MagicButtonsPage />} />
+    <Route path="/girlfriend-helpdesk/date-booking" element={<DateBookingDepartmentPage />} />
+    <Route path="/girlfriend-helpdesk/request" element={<RequestDepartmentPage />} />
+    <Route path="/girlfriend-helpdesk/complaint" element={<ComplaintDepartmentPage />} />
+    <Route path="/girlfriend-helpdesk" element={<GirlfriendHelpdeskPage />} />
     <Route path="/impressions" element={<ImpressionsPage />} />
     <Route path="/dictionary" element={<DictionaryPage />} />
     <Route path="/about" element={<SectionPage title="About" />} />
@@ -118,7 +124,7 @@ function Hero() {
     <section aria-label="Our world, a little closer" className="explore-photo-hero">
       <img src="/bg-post-timeline.jpeg" alt="Jaysha" className="explore-photo-image" fetchPriority="high" />
       <div className="explore-photo-shade" aria-hidden="true" />
-      <div className="explore-photo-copy"><span className="hero-welcome-line">LADIES AND GENTEMAN, WELCOME TO</span><h1>THE WORLD OF JAYSHA SINGYAN.</h1><p className="hero-welcome-subtext">&quot;There's a lot more to her than meets the eye&quot;</p></div>
+      <div className="explore-photo-copy"><span className="hero-welcome-line">Ladies and Gentlemen, Welcome to</span><h1>The World of<br />Jaysha Singyan</h1><p className="hero-welcome-subtext">&quot;There's a lot more to her than meets the eye&quot;</p></div>
       <span className="explore-photo-hint">Scroll to explore &#8595;</span>
     </section>
     <AboutHer />

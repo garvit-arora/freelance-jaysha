@@ -29,7 +29,7 @@ export function DictionaryPage() {
       <p>Because understanding Jaysha is an art. And apparently, I’ve been studying for five years.</p>
       <p>She says one thing. Means another. And somehow, you’re supposed to know the difference.</p>
       <p>This is an attempt to decode the language, interpret the silences and translate the things that were never meant to be taken literally.</p>
-      <p>This document contains a collection of commonly used phrases, their hidden meanings, and recommended responses.</p>
+      <p>This page contains a collection of her commonly used phrases and their hidden meanings.</p>
       <p>So, for the benefit of humanity (and mostly myself), I’ve decided to document a few of these mysteries.</p>
       <p className="translator-introduction-disclaimer">Disclaimer: Even after five years, the translator is not always accurate.</p>
     </div></div>
@@ -45,7 +45,7 @@ export function LoginPage() {
   const navigate = useNavigate()
   const [params] = useSearchParams()
   const next = params.get('next')
-  const destination = next === '/impressions' || (next?.startsWith('/calendar') && !next.startsWith('//')) ? next! : '/calendar'
+  const destination = next === '/impressions' || next === '/girlfriend-helpdesk' || next === '/girlfriend-helpdesk/complaint' || next === '/girlfriend-helpdesk/request' || next === '/girlfriend-helpdesk/date-booking' || (next?.startsWith('/calendar') && !next.startsWith('//')) ? next! : '/calendar'
   const { session, loading } = useSession()
   const recovery = params.get('reset') === '1'
   const [error, setError] = useState('')

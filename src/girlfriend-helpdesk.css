@@ -1,0 +1,56 @@
+
+.world-page.helpdesk-page{font-family:Satoshi,Helvetica,Arial,sans-serif;color:#f3f2ee;padding:24px clamp(18px,5vw,60px) 72px}
+.helpdesk-card{max-width:960px;margin:28px auto 0;padding:36px;border:1px solid #ffffff16;border-radius:22px;background:#10100ed9}
+.helpdesk-eyebrow{display:block;font-size:10px;line-height:1.6;letter-spacing:.17em;text-transform:uppercase;color:#ac9982;margin-bottom:16px}
+.helpdesk-introduction h1{font-family:inherit;font-size:clamp(32px,4vw,46px);line-height:1.15;font-weight:500;letter-spacing:-.035em;margin:0 0 20px;max-width:650px;color:#f3f2ee}
+.helpdesk-introduction>p{font-size:16px;line-height:1.8;color:#aaa79f;max-width:680px;margin:0 0 24px}
+.helpdesk-departments{display:flex;flex-direction:column;margin-top:28px}
+.helpdesk-department{display:block;min-width:0;padding:25px 0;border-top:1px solid #ffffff15;color:inherit;text-decoration:none;transition:background .18s}
+.helpdesk-department:last-child{padding-bottom:0}.helpdesk-department h2{display:flex;align-items:center;gap:13px;font-size:22px;font-weight:500;line-height:1.4;margin:0 0 10px;color:#f3f2ee}
+.helpdesk-department h2 svg{flex-shrink:0;width:25px;height:25px}.helpdesk-department p{font-size:15px;line-height:1.75;color:#aaa79f;margin:0;max-width:740px}
+.helpdesk-department:hover{background:#ffffff04}.helpdesk-department:hover h2{color:#e5cfad}.helpdesk-department:focus-visible{outline:2px solid #c8b18c;outline-offset:6px;border-radius:4px}
+.helpdesk-form-section{max-width:780px;margin:30px auto 0}.helpdesk-form-intro{font-size:16px;line-height:1.8;color:#c6c0b5;margin:0 0 24px}
+.helpdesk-form{padding:28px;border:1px solid #ffffff18;border-radius:20px;background:#10100ed9;color-scheme:dark}.helpdesk-form h2{font-size:28px;font-weight:600;line-height:1.3;letter-spacing:-.025em;margin:0 0 26px}
+.helpdesk-form>label,.helpdesk-form legend{font-size:14px;font-weight:500;line-height:1.6;color:#bdb6a9;display:block;margin-bottom:10px}
+.helpdesk-form select,.helpdesk-form textarea{display:block;min-width:0;width:100%;border:1px solid #4b463c;background:#0d0d0b;color:#eeeae3;font-family:inherit;font-size:16px;padding:12px 15px;margin-bottom:22px;border-radius:10px;line-height:1.6}
+.helpdesk-form select{cursor:pointer;min-height:48px;padding-right:35px}.helpdesk-form textarea{resize:vertical;min-height:125px}.helpdesk-form textarea::placeholder{color:#7e7b72}
+.helpdesk-form fieldset{border:0;padding:0;margin:0 0 22px;min-width:0}.helpdesk-severity-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.helpdesk-form .helpdesk-radio{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.6;color:#ddd6ca;margin:0;padding:14px 12px;border:1px solid #46423a;border-radius:10px;cursor:pointer}
+.helpdesk-radio input{appearance:none;flex-shrink:0;width:18px;height:18px;border:1px solid #777064;border-radius:50%;margin-top:2px;display:grid;place-content:center}.helpdesk-radio input:checked{border-color:#d2b692}.helpdesk-radio input:checked::before{content:'';width:8px;height:8px;border-radius:50%;background:#d2b692}.helpdesk-radio:has(input:checked){border-color:#c6a77f;background:#c6a77f12}
+.helpdesk-form button[type=submit]{background:#e6d6be;color:#211d17;border:0;border-radius:24px;padding:12px 20px;font-size:14px;font-weight:600;line-height:1.5;cursor:pointer;min-height:46px}.helpdesk-form button[type=submit]:hover{background:#f2e4cf}
+.helpdesk-form :disabled{opacity:.5;cursor:default}.helpdesk-form :is(input,select,textarea,button,a):focus-visible{outline:2px solid #c8b18c;outline-offset:3px}
+.helpdesk-sign-in{font-size:12px;color:#a69f92;line-height:1.7;margin:0 0 20px}.helpdesk-sign-in a{text-decoration:underline;text-underline-offset:3px;color:#ddc5a2}.helpdesk-form-error{color:#edb2a6;font-size:14px;line-height:1.7;margin-bottom:20px}.helpdesk-form-success{color:#b9d6b4;font-size:14px;line-height:1.7;margin-bottom:20px}
+.helpdesk-confirmation{position:fixed;inset:0;margin:auto;width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 48px);overflow:auto;background:#11110e;color:#f3f2ee;border:1px solid #4a4133;border-radius:20px;padding:30px;font-family:Satoshi,Helvetica,Arial,sans-serif;box-shadow:0 25px 90px #0009}.helpdesk-confirmation::backdrop{background:#000b;backdrop-filter:blur(8px)}.helpdesk-confirmation p{font-size:20px;line-height:1.75;margin:0}.helpdesk-confirmation button{display:block;margin:24px 0 0 auto;padding:10px 20px;border-radius:24px;background:#e6d6be;color:#211d17;font-size:14px;cursor:pointer}.helpdesk-confirmation button:focus-visible{outline:2px solid #c8b18c;outline-offset:4px}.helpdesk-confirmation:not([open]){display:none}
+.helpdesk-date-form .calendar-picker{width:100%;margin-bottom:22px}.helpdesk-date-form .calendar-picker-trigger{display:flex;align-items:center;width:100%;min-height:48px;padding:12px 15px;border:1px solid #4b463c;background:#0d0d0b;border-radius:10px;font-size:16px;color:#eeeae3;gap:10px;text-align:left}.helpdesk-date-form .calendar-picker-trigger>span{flex:1}.helpdesk-date-form .calendar-picker-trigger>svg{width:18px;height:18px}.helpdesk-date-form .calendar-picker-popup{left:0;transform:none;width:320px;max-width:100%;z-index:40}.helpdesk-date-form .calendar-picker-popup button{cursor:pointer}.helpdesk-date-form .calendar-picker-popup button:disabled{cursor:default}.helpdesk-date-form .calendar-picker-grid button{min-height:38px}.helpdesk-date-form .calendar-picker-popup>header>button{padding:8px}
+.helpdesk-email-status{margin-top:20px;font-size:12px;line-height:1.7;color:#b9af9e}.helpdesk-email-status button{display:inline;margin:0;padding:3px 6px;font-size:12px;background:transparent;color:#dfc6a1;text-decoration:underline}
+@media(max-width:750px){.helpdesk-department{padding:22px 0}.helpdesk-department h2{font-size:19px;gap:11px}.helpdesk-department p{font-size:14px}.helpdesk-severity-options{grid-template-columns:1fr}.helpdesk-form .helpdesk-radio{padding:12px;font-size:14px}}
+@media(max-width:600px){.world-page.helpdesk-page{padding:20px 18px 64px}.helpdesk-card{margin-top:22px;padding:24px 20px;border-radius:18px}.helpdesk-introduction h1{font-size:34px;margin-bottom:18px}.helpdesk-introduction>p{font-size:14px;line-height:1.8;margin-bottom:20px}.helpdesk-departments{margin-top:24px}.helpdesk-form-section{margin-top:24px}.helpdesk-form-intro{font-size:14px;line-height:1.85;margin-bottom:20px}.helpdesk-form{padding:22px 18px;border-radius:18px}.helpdesk-form h2{font-size:24px;margin-bottom:22px}.helpdesk-form button[type=submit]{width:100%}.helpdesk-confirmation{padding:24px}.helpdesk-confirmation p{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.helpdesk-department{transition:none}}
+/* Department hover fills the card width, with the content kept aligned. */
+.helpdesk-card{overflow:hidden}
+.helpdesk-card .helpdesk-departments{margin-left:-36px;margin-right:-36px;margin-bottom:-36px}
+.helpdesk-card .helpdesk-department{box-sizing:border-box;width:100%;padding:25px 36px;border-radius:0}
+.helpdesk-card .helpdesk-department:last-child{padding-bottom:36px}
+.helpdesk-card .helpdesk-department:hover{background:#ffffff08}
+.helpdesk-card .helpdesk-department:focus-visible{outline-offset:-3px;border-radius:0}
+@media(max-width:750px){.helpdesk-card .helpdesk-department{padding-top:22px;padding-bottom:22px}.helpdesk-card .helpdesk-department:last-child{padding-bottom:36px}}
+@media(max-width:600px){.helpdesk-card .helpdesk-departments{margin-left:-20px;margin-right:-20px;margin-bottom:-24px}.helpdesk-card .helpdesk-department{padding-left:20px;padding-right:20px}.helpdesk-card .helpdesk-department:last-child{padding-bottom:24px}}
+/* Neutral black Helpdesk surfaces. */
+.world-page.helpdesk-page .helpdesk-card,
+.world-page.helpdesk-page .helpdesk-form,
+.world-page.helpdesk-page .helpdesk-department,
+.world-page.helpdesk-page .helpdesk-department:hover,
+.world-page.helpdesk-page .helpdesk-dropdown-trigger,
+.world-page.helpdesk-page .helpdesk-dropdown-menu,
+.world-page.helpdesk-page .helpdesk-dropdown-options,
+.world-page.helpdesk-page .helpdesk-dropdown-options>button,
+.world-page.helpdesk-page .helpdesk-dropdown-options>button:hover,
+.world-page.helpdesk-page .helpdesk-dropdown-options>button.is-active,
+.world-page.helpdesk-page .helpdesk-dropdown-options>button[aria-selected=true],
+.world-page.helpdesk-page .helpdesk-form select,
+.world-page.helpdesk-page .helpdesk-form textarea,
+.world-page.helpdesk-page .helpdesk-radio,
+.world-page.helpdesk-page .helpdesk-radio:has(input:checked),
+.world-page.helpdesk-page .calendar-picker-trigger,
+.world-page.helpdesk-page .calendar-picker-popup,
+.helpdesk-confirmation{background:#000}

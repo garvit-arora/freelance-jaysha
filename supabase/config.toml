@@ -1,3 +1,9 @@
 ﻿project_id = "mqvzmgyndelotltiliwn"
 [functions.media]
 verify_jwt = false
+
+[functions.helpdesk-email]
+verify_jwt = false
+
+[functions.helpdesk-submit]
+verify_jwt = false
