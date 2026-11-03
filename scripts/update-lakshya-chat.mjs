@@ -8,6 +8,7 @@ const query = (await Promise.all([
   '202611030005_impression_corrections.sql',
   '202611030006_food_smileys.sql',
   '202611030008_lakshya_alignment.sql',
+  '202611030010_lakshya_prompts.sql',
 ].map(file => readFile(`supabase/migrations/${file}`,'utf8')))).join('\n')
 const response = await fetch(`https://api.supabase.com/v1/projects/${ref}/database/query`,{method:'POST',headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json'},body:JSON.stringify({query})})
 if (!response.ok) throw new Error(`Chat update failed (${response.status})`)
