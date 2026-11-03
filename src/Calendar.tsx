@@ -20,7 +20,12 @@ export function PageHeader({ title }: { title: string }) {
 }
 
 export function CalendarPage() {
-  const [currentDate, setCurrentDate] = useState(new Date())
+  const [currentDate, setCurrentDate] = useState(() => {
+    let month = new URLSearchParams(window.location.search).get('month')
+    try { month ||= sessionStorage.getItem('archive-calendar-month') } catch { /* Storage is optional. */ }
+    return month && /^\d{4}-(0[1-9]|1[0-2])$/.test(month) ? new Date(`${month}-01T12:00:00`) : new Date()
+  })
+  useEffect(() => { try { sessionStorage.setItem('archive-calendar-month', format(currentDate, 'yyyy-MM')) } catch { /* Storage is optional. */ } }, [currentDate])
   const [showMap, setShowMap] = useState(false)
   const mapSection = useRef<HTMLElement>(null)
   useEffect(() => {
@@ -45,7 +50,7 @@ export function CalendarPage() {
   return <main className="stories-calendar">
     <header className="stories-header"><Link to="/home" aria-label="Back to our world"><ArrowLeft size={25} /></Link><h1>Stories Archive</h1><Link to="/dictionary" aria-label="Open Jaysha-to-English translator"><BookOpen size={21} aria-hidden="true" /></Link></header>
     <section ref={mapSection} className="calendar-map-section" aria-labelledby="calendar-map-title"><header><span>THE PLACES BEHIND THE DAYS</span><h2 id="calendar-map-title">Our dates, on the map</h2><div className="dates-section-intro"><p>In case you ever wonder whether I’ve actually taken you anywhere in the last five years, I’ve prepared some evidence.</p><p>I’ve mapped out the places we’ve been, the dates on which we visited, and the little moments that made them memorable.</p><p>Because Google Maps remembers where we went. I remember why it mattered &#127773;</p></div></header>{showMap ? <Suspense fallback={<div className="calendar-map-loading" role="status">Opening our map?</div>}><DatesMap embedded /></Suspense> : <div className="calendar-map-loading" aria-hidden="true" />}</section>
-    <div className="stories-tabs"><span aria-current="page">CALENDAR</span></div><div className="calendar-section-intro dates-section-intro"><p>In case you ever accuse me of not spending enough time with you, I’d like to present Exhibit A.</p><p>An entire calendar filled with photographic and video evidence of our time together.</p><p>Every highlighted date holds the actual pictures and videos from that day.<br />Yes, I really went through five years of photos for this. You’re welcome.</p></div>
+    <div id="calendar-section" className="stories-tabs" style={{ scrollMarginTop: 20 }}><span aria-current="page">CALENDAR</span></div><div className="calendar-section-intro dates-section-intro"><p>In case you ever accuse me of not spending enough time with you, I’d like to present Exhibit A.</p><p>An entire calendar filled with photographic and video evidence of our time together.</p><p>Every highlighted date holds the actual pictures and videos from that day.<br />Yes, I really went through five years of photos for this. You’re welcome.</p></div>
     <div className="stories-controls"><button onClick={() => setCurrentDate(value => addMonths(value, -1))} aria-label="Previous month"><ChevronLeft size={20} /></button><CalendarPicker initialView="months" value={currentDate} onChange={setCurrentDate} /><button onClick={() => setCurrentDate(value => addMonths(value, 1))} aria-label="Next month"><ChevronRight size={20} /></button><button onClick={() => setCurrentDate(new Date())}>Today</button></div>
     {status === 'loading' && <p className="stories-status" role="status">Loading memories?</p>}
     {status === 'error' && <p className="stories-status" role="alert">Couldn?t load the archive. <button onClick={() => setRetry(value => value + 1)}>Try again</button></p>}

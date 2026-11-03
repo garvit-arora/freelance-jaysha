@@ -68,6 +68,7 @@ function Intro() {
 
 function App() {
   const location = useLocation()
+  const previousPath = useRef(location.pathname)
   const exploring = location.pathname === '/home' || (location.pathname === '/' && location.hash === '#explore')
   useLayoutEffect(() => {
     if (location.pathname.startsWith('/girlfriend-helpdesk')) return
@@ -91,10 +92,14 @@ function App() {
   }, [location.pathname, exploring])
   useEffect(() => {
     document.title = 'Jaysha Singyan'
+    const returningToCalendar = location.pathname === '/calendar' && (location.hash === '#calendar-section' || /^\/calendar\/\d{2}-\d{2}-\d{4}$/.test(previousPath.current))
+    previousPath.current = location.pathname
     window.scrollTo(0, 0)
+    const frame = returningToCalendar ? requestAnimationFrame(() => document.getElementById('calendar-section')?.scrollIntoView({ block: 'start', behavior: 'instant' })) : null
     if (exploring) document.querySelector<HTMLElement>('main')?.focus({ preventScroll: true })
     ScrollTrigger.refresh()
-  }, [location.pathname, exploring])
+    return () => { if (frame !== null) cancelAnimationFrame(frame) }
+  }, [location.pathname, location.search, location.hash, exploring])
   return <>{exploring && <div className="explore-fixed-background" aria-hidden="true" />}<div id="smooth-wrapper"><div id="smooth-content"><Routes>
     <Route path="/" element={exploring ? <Navigate to="/home" replace /> : <Intro />} />
     <Route path="/home" element={<Hero />} />
