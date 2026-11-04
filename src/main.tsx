@@ -28,7 +28,7 @@ const delay = (ms: number) => ({ animationDelay: `${ms}ms` })
 
 function Intro() {
   const heading = 'Of all the things I want to give you in this life, I hope making you feel loved is the one I never stop doing'
-  const revealEnd = 200 + heading.length * 100 + 1200
+  const revealEnd = 200 + heading.length * 125 + 1200
   const navigate = useNavigate()
   const navigateTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   useEffect(() => () => clearTimeout(navigateTimer.current), [])
@@ -41,7 +41,7 @@ function Intro() {
         <h1 className="intro-heading intro-love-line" aria-label={heading}>
           {heading.split(' ').map((word, wordIndex, words) => {
             const offset = words.slice(0, wordIndex).join(' ').length + (wordIndex ? 1 : 0)
-            return <React.Fragment key={wordIndex}><span className="intro-word" aria-hidden="true">{Array.from(word).map((character, i) => <span className="intro-letter" key={i} style={{ animationDelay: `${200 + (offset + i) * 100}ms` }}>{character}</span>)}</span>{wordIndex < words.length - 1 ? ' ' : ''}</React.Fragment>
+            return <React.Fragment key={wordIndex}><span className="intro-word" aria-hidden="true">{Array.from(word).map((character, i) => <span className="intro-letter" key={i} style={{ animationDelay: `${200 + (offset + i) * 125}ms` }}>{character}</span>)}</span>{wordIndex < words.length - 1 ? ' ' : ''}</React.Fragment>
           })}
         </h1>
         <div className="intro-step mt-8" style={delay(revealEnd)}>
