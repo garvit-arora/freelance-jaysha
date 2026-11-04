@@ -9,8 +9,8 @@ const navigation = [
   { label: 'Home', path: '/home' },
   { label: 'Dictionary', path: '/dictionary' },
   { label: 'Ek tha Romeo', path: '/romeo' },
-  { label: 'Magic Buttons', path: '/magic-buttons' },
   { label: 'Dates', path: '/calendar' },
+  { label: 'Magic Buttons', path: '/magic-buttons' },
   { label: 'Impressions', path: '/impressions' },
   { label: 'Girlfriend Helpdesk', path: '/girlfriend-helpdesk' },
 ]
@@ -46,7 +46,7 @@ export function HamburgerMenu() {
     return () => {
       document.body.style.overflow = previous
       if (content) content.inert = wasInert
-      smoother?.paused(wasPaused)
+      if (smoother && ScrollSmoother.get() === smoother) smoother.paused(wasPaused)
       document.removeEventListener('keydown', onKey)
       toggle.current?.focus({ preventScroll: true })
     }

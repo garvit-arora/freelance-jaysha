@@ -90,15 +90,20 @@ function App() {
     })
     return () => motion.revert()
   }, [location.pathname, exploring])
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.title = 'Jaysha Singyan'
     const returningToCalendar = location.pathname === '/calendar' && (location.hash === '#calendar-section' || /^\/calendar\/\d{2}-\d{2}-\d{4}$/.test(previousPath.current))
     previousPath.current = location.pathname
-    window.scrollTo(0, 0)
-    const frame = returningToCalendar ? requestAnimationFrame(() => document.getElementById('calendar-section')?.scrollIntoView({ block: 'start', behavior: 'instant' })) : null
-    if (exploring) document.querySelector<HTMLElement>('main')?.focus({ preventScroll: true })
+    const resetScroll = () => {
+      if (returningToCalendar) document.getElementById('calendar-section')?.scrollIntoView({ block: 'start', behavior: 'instant' })
+      else window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    }
     ScrollTrigger.refresh()
-    return () => { if (frame !== null) cancelAnimationFrame(frame) }
+    resetScroll()
+    // Run again after menu cleanup and ScrollSmoother release their old position.
+    const frame = requestAnimationFrame(resetScroll)
+    if (exploring) document.querySelector<HTMLElement>('main')?.focus({ preventScroll: true })
+    return () => cancelAnimationFrame(frame)
   }, [location.pathname, location.search, location.hash, exploring])
   return <>{exploring && <div className="explore-fixed-background" aria-hidden="true" />}<div id="smooth-wrapper"><div id="smooth-content"><Routes>
     <Route path="/" element={exploring ? <Navigate to="/home" replace /> : <Intro />} />
