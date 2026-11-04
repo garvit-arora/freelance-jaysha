@@ -124,7 +124,7 @@ function App() {
     <Route path="/calendar/:date" element={<DatePage />} />
     <Route path="/dates" element={<React.Suspense fallback={<main className="world-page" role="status">Loading our map…</main>}><DatesMap /></React.Suspense>} />
     <Route path="*" element={<NotFound />} />
-  </Routes></div></div><HamburgerMenu /><MusicButton />{!['/impressions', '/dates'].includes(location.pathname) && <ContactButton />}</>
+  </Routes></div></div><HamburgerMenu /><MusicButton />{!['/', '/impressions', '/dates'].includes(location.pathname) && <ContactButton />}</>
 }
 
 function Hero() {
