@@ -15,6 +15,7 @@ import { FaqSection } from './FaqSection'
 import { MagicButtonsPage } from './MagicButtons'
 import { GirlfriendHelpdeskPage, ComplaintDepartmentPage, RequestDepartmentPage, DateBookingDepartmentPage } from './GirlfriendHelpdesk'
 import { MusicButton } from './MusicButton'
+import { useSession } from './lib/cloud'
 import './refinements.css'
 import SlideCommit from './SlideCommit'
 import { DictionaryPage, LoginPage } from './PersonalPages'
@@ -64,6 +65,14 @@ function Intro() {
       <footer className="intro-footer intro-step" style={delay(revealEnd + 300)}>Made just for you</footer>
     </section>
   )
+}
+
+function RequireLogin({ children }: { children: React.ReactNode }) {
+  const { session, loading } = useSession()
+  const location = useLocation()
+  if (loading) return <main className="world-page" role="status">Checking sign-in...</main>
+  if (!session) return <Navigate to={`/login?next=${encodeURIComponent(location.pathname + location.search + location.hash)}`} replace />
+  return <>{children}</>
 }
 
 function App() {
@@ -118,11 +127,11 @@ function App() {
     <Route path="/impressions" element={<ImpressionsPage />} />
     <Route path="/dictionary" element={<DictionaryPage />} />
     <Route path="/about" element={<SectionPage title="About" />} />
-    <Route path="/story" element={<RomeoPage />} />
-    <Route path="/romeo" element={<RomeoPage />} />
-    <Route path="/calendar" element={<CalendarPage />} />
-    <Route path="/calendar/:date" element={<DatePage />} />
-    <Route path="/dates" element={<React.Suspense fallback={<main className="world-page" role="status">Loading our map…</main>}><DatesMap /></React.Suspense>} />
+    <Route path="/story" element={<RequireLogin><RomeoPage /></RequireLogin>} />
+    <Route path="/romeo" element={<RequireLogin><RomeoPage /></RequireLogin>} />
+    <Route path="/calendar" element={<RequireLogin><CalendarPage /></RequireLogin>} />
+    <Route path="/calendar/:date" element={<RequireLogin><DatePage /></RequireLogin>} />
+    <Route path="/dates" element={<RequireLogin><React.Suspense fallback={<main className="world-page" role="status">Loading our map…</main>}><DatesMap /></React.Suspense></RequireLogin>} />
     <Route path="*" element={<NotFound />} />
   </Routes></div></div><HamburgerMenu /><MusicButton />{!['/', '/impressions', '/dates'].includes(location.pathname) && <ContactButton />}</>
 }

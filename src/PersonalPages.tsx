@@ -45,7 +45,7 @@ export function LoginPage() {
   const navigate = useNavigate()
   const [params] = useSearchParams()
   const next = params.get('next')
-  const destination = next === '/impressions' || next === '/girlfriend-helpdesk' || next === '/girlfriend-helpdesk/complaint' || next === '/girlfriend-helpdesk/request' || next === '/girlfriend-helpdesk/date-booking' || (next?.startsWith('/calendar') && !next.startsWith('//')) ? next! : '/calendar'
+  const destination = ['/dates','/romeo','/story'].includes(next || '') || next === '/impressions' || next === '/girlfriend-helpdesk' || next === '/girlfriend-helpdesk/complaint' || next === '/girlfriend-helpdesk/request' || next === '/girlfriend-helpdesk/date-booking' || (next?.startsWith('/calendar') && !next.startsWith('//')) ? next! : '/calendar'
   const { session, loading } = useSession()
   const recovery = params.get('reset') === '1'
   const [error, setError] = useState('')
